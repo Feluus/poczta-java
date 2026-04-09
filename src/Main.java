@@ -20,7 +20,7 @@ public class Main {
      while(!option.equals("3")){
          option = sc.nextLine();
          switch (option) {
-             case "1": uS.register(); menu(); break;
+             case "1": uS.register();menu(); break;
              case "2": uS.logging();  break;
              case "3": break;
          }}
@@ -33,9 +33,9 @@ public class Main {
 
 //menu();
 LoginWindow okno = new LoginWindow();
-//okno.setVisible(true);
-MenuWindow menu = new MenuWindow();
-menu.setVisible(true);
+okno.setVisible(true);
+//MenuWindow menu = new MenuWindow();
+//menu.setVisible(true);
 //FollowPackWindow follow = new FollowPackWindow();
 //follow.setVisible(true);
 
