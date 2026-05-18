@@ -15,24 +15,65 @@ public class MenuWindow extends JFrame{
     setResizable(false);
 
         ImageIcon tlo =new ImageIcon("src/resources/menu.jpg");
+        ImageIcon nadaj =new ImageIcon("src/resources/nadaj2.jpg");
+        ImageIcon sledz =new ImageIcon("src/resources/sledz2.jpg");
+        ImageIcon profil =new ImageIcon("src/resources/profil2.jpg");
+        ImageIcon maly =new ImageIcon("src/resources/maly2.jpg");
+
         JLabel background = new JLabel(tlo);
-        background.setBounds(-50,0,900,900);
+        JLabel sendPackButton2 = new JLabel(nadaj);
+        JLabel followButton2 = new JLabel(sledz);
+        JLabel profileButton2 = new JLabel(profil);
+        JLabel packsButton2 = new JLabel(maly);
+
+
+
+
+
+        background.setBounds(0, 0, 800, 820);
         background.setLayout(null);
         background.setVisible(true);
-        background.addMouseListener(new java.awt.event.MouseAdapter() {  // <----- listener
+        background.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 System.out.println("X: " + e.getX() + " Y: " + e.getY());
             }
         });
         add(background);
-//przycisk wyslij paczke
+
+        background.add(sendPackButton2);
+        background.add(followButton2);
+        background.add(profileButton2);
+        background.add(packsButton2);
+
+        sendPackButton2.setVisible(false);
+        followButton2.setVisible(false);
+        profileButton2.setVisible(false);
+        packsButton2.setVisible(false);
+
+
+
+
+        //przycisk wyslij paczke
         JButton sendPackButton = new JButton("");
-        sendPackButton.setBounds(235, 215, 430, 95);
+        sendPackButton.setBounds(212, 184, 377, 84);
+        sendPackButton2.setBounds(193, 177, 410, 100);
+        sendPackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sendPackButton.setOpaque(false);
+                sendPackButton2.setVisible(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                sendPackButton2.setVisible(false);
+            }
+        });
+
         sendPackButton.addActionListener(e -> {
             System.out.println("Kliknieto nadaj");
             SendPack.setVisible(true);
 
         });
+
         sendPackButton.setBorder(null);
         sendPackButton.setOpaque(false);
         background.add(sendPackButton);
@@ -41,7 +82,18 @@ public class MenuWindow extends JFrame{
 
         //przycisk sledz
         JButton followButton = new JButton("");
-        followButton.setBounds(235, 337, 430, 95);
+        followButton.setBounds(212, 291, 377, 84);
+        followButton2.setBounds(193, 284, 410, 100);
+        followButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                followButton.setOpaque(false);
+                followButton2.setVisible(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                followButton2.setVisible(false);
+            }
+        });
         followButton.addActionListener(e -> {
             System.out.println("Kliknieto sledz");
             follow.setVisible(true);
@@ -55,7 +107,18 @@ public class MenuWindow extends JFrame{
 
         //przycisk profil uzytkownika
         JButton profileButton = new JButton("");
-        profileButton.setBounds(235, 459, 430, 95);
+        profileButton.setBounds(212, 398, 377, 84);
+        profileButton2.setBounds(193, 390, 410, 100);
+        profileButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                profileButton.setOpaque(false);
+                profileButton2.setVisible(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                profileButton2.setVisible(false);
+            }
+        });
         profileButton.addActionListener(e -> {
             System.out.println("Kliknieto profil uzytkownika");
             UserProfile.setVisible(true);
@@ -68,7 +131,18 @@ public class MenuWindow extends JFrame{
         profileButton.setFocusPainted(false);
 
         JButton packsButton = new JButton("");
-        packsButton.setBounds(600, 645, 55, 50);
+        packsButton.setBounds(533, 559, 47, 50);
+        packsButton2.setBounds(530, 559, 54, 50);
+        packsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                packsButton.setOpaque(false);
+                packsButton2.setVisible(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                packsButton2.setVisible(false);
+            }
+        });
         packsButton.addActionListener(e -> {
             System.out.println("Kliknieto paczki");
         });

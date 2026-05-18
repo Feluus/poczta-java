@@ -31,7 +31,7 @@ public class LoginWindow extends JFrame {
         add(background);
 //tu
         JLabel password2 = new JLabel(pass2);
-        password2.setBounds(238, 425, 319, 75);
+        password2.setBounds(238, 443, 319, 75);
         password2.setLayout(null);
         password2.setVisible(false);
         background.add(password2);
@@ -64,7 +64,7 @@ public class LoginWindow extends JFrame {
         background.add(passwordField);
 
         JPasswordField passwordField2 = new JPasswordField();
-        passwordField2.setBounds(277, 462, 300, 20);
+        passwordField2.setBounds(277, 479, 300, 20);
         passwordField2.setBorder(null);
         passwordField2.setOpaque(false);
         passwordField2.setVisible(false);

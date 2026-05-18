@@ -32,10 +32,10 @@ public class Main {
     public static void main(String[] args) {
 
 //menu();
-LoginWindow okno = new LoginWindow();
-okno.setVisible(true);
-//MenuWindow menu = new MenuWindow();
-//menu.setVisible(true);
+//LoginWindow okno = new LoginWindow();
+//okno.setVisible(true);
+MenuWindow menu = new MenuWindow();
+menu.setVisible(true);
 //FollowPackWindow follow = new FollowPackWindow();
 //follow.setVisible(true);
 
