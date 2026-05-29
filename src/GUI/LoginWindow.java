@@ -1,9 +1,12 @@
 package GUI;
 
+import Utils.Utils;
 import service.UserService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class LoginWindow extends JFrame {
@@ -12,6 +15,7 @@ public class LoginWindow extends JFrame {
     public boolean isRegisterScreen = false;
     UserService uS = new UserService();
     MenuWindow menu = new MenuWindow();
+    Utils utils= new Utils();
 
     public String login,password;
 
@@ -60,7 +64,7 @@ public class LoginWindow extends JFrame {
 
         JTextField loginField = new JTextField("Wpisz login");
         JPasswordField passwordField = new JPasswordField("Wpisz haslo");
-        JPasswordField passwordField2 = new JPasswordField("Wpisz haslo");
+        JPasswordField passwordField2 = new JPasswordField("Wpisz halso");
 
         loginField.setBounds(278, 281, 300, 20);
         loginField.setBorder(null);
@@ -195,6 +199,9 @@ public class LoginWindow extends JFrame {
                        hideLogin.setVisible(false);
                        isLogginScreen = true;
                        isRegisterScreen = false;
+                       loginField.setText("Wpisz login");
+                       passwordField.setText("Wpisz haslo");
+
 
                    }
                    else
@@ -205,7 +212,10 @@ public class LoginWindow extends JFrame {
                                "Błąd rejestracji",
                                JOptionPane.ERROR_MESSAGE
                        );
-                       //przejście do pola tekstowego login
+                       loginField.setText("Wpisz login");
+                       passwordField.setText("Wpisz haslo");
+                       passwordField2.setText("Wpisz halso");
+
 
                    }
 
@@ -217,6 +227,10 @@ public class LoginWindow extends JFrame {
 
             });
 
+       utils.maxTextLenght(loginField,24);
+        utils.maxTextLenght(passwordField,24);
+        utils.maxTextLenght(passwordField2,24);
+
             registerButton.setBorder(null);
             registerButton.setOpaque(false);
             background.add(registerButton);
@@ -226,7 +240,7 @@ public class LoginWindow extends JFrame {
 
         SendPackWindow.textListener(loginField,"Wpisz login");
         SendPackWindow.textListener(passwordField,"Wpisz haslo");
-        SendPackWindow.textListener(passwordField2,"Wpisz haslo");
+        SendPackWindow.textListener(passwordField2,"Wpisz halso");
 //komunikaty
 
         }
