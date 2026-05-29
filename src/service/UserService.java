@@ -1,5 +1,7 @@
 package service;
 
+import GUI.LoginWindow;
+import GUI.MenuWindow;
 import model.User;
 
 import java.util.ArrayList;
@@ -8,23 +10,24 @@ import java.util.Scanner;
 public class UserService {
     ArrayList<User> users = new ArrayList<>();
     User user = new User("", "", 1);
+
     int nextID = 1;
 
     Scanner sc = new Scanner(System.in);
+    MenuWindow menu = new MenuWindow();
+
+
     boolean zalogowano = false;
 
 
-   public void register() {
-        String login = "";
-        String haslo = "";
+   public void register(String loginn, String hasloo) {
+        String login = loginn;
+        String haslo = hasloo;
         int countdown = 4;
         do {
-            System.out.println("Podaj login");
-            login = sc.next();
+
         }
         while (loginExist(login));
-        System.out.println("Podaj haslo");
-        haslo = sc.next();
         User user = new User(login, haslo, nextID++);
         users.add(user);
         System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
@@ -46,14 +49,15 @@ public class UserService {
         return false;
     }
 
-    public void logging() {
-        String login = "";
-        String haslo = "";
+    public boolean logging(String loginn, String hasloo) {
+        String login = loginn;
+        String haslo = hasloo;
         int countdown = 4;
         int countdownLogin=3;
         int whichACC=0;
         boolean goodLogin = false;
         boolean goodPassword=false;
+        boolean zalogowano=false;
 
 
         do {
@@ -66,8 +70,8 @@ public class UserService {
             {
                 break;
             }
-            System.out.println("podaj login");
-            login = sc.next();
+
+            //login = sc.next();
             for (int i = 0; i < users.size(); i++) {
                 if (users.get(i).login.equals(login)) {
                     goodLogin = true;
@@ -79,21 +83,34 @@ public class UserService {
                             break;
                         }
                         System.out.println("dobry login, teraz podaj haslo");
-                        haslo = sc.next();
+
                         //user.sprawdzHaslo(login, haslo);
                         if(user.sprawdzHaslo(users.get(i).haslo, haslo)==true)
                         {
                             System.out.println("hasło poprawne");
                             goodPassword=true;
+
+                        }
+                        else
+                        {
+                            System.out.println("zle haslo mordeczko");
                         }
                     } while(goodPassword==false);
 
 
+                }
+                else
+                {
+                    System.out.println("nie ma takiego loginu w bazie");
                 }
             }
 
 
         }while (goodLogin) ;
         System.out.println("pomyślnie zalogowano dla konta "+ users.get(whichACC).login);
+        zalogowano=true;
+        return zalogowano;
+
+
     }
 }

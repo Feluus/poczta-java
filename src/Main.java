@@ -20,8 +20,8 @@ public class Main {
      while(!option.equals("3")){
          option = sc.nextLine();
          switch (option) {
-             case "1": uS.register();menu(); break;
-             case "2": uS.logging();  break;
+             case "1": //uS.register();menu(); break;
+             case "2": //uS.logging();  break;
              case "3": break;
          }}
 
@@ -32,12 +32,13 @@ public class Main {
     public static void main(String[] args) {
 
 //menu();
-//LoginWindow okno = new LoginWindow();
-//okno.setVisible(true);
-MenuWindow menu = new MenuWindow();
-menu.setVisible(true);
+LoginWindow okno = new LoginWindow();
+okno.setVisible(true);
+//menuWindow menu = new MenuWindow();
+//menu.setVisible(true);
 //FollowPackWindow follow = new FollowPackWindow();
 //follow.setVisible(true);
+        //uS.logging("jas","kapela");
 
     }}
 

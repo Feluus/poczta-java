@@ -1,12 +1,19 @@
 package GUI;
 
+import service.UserService;
+
 import javax.swing.*;
 import java.awt.*;
 
 
 public class LoginWindow extends JFrame {
+
     public boolean isLogginScreen = true;
     public boolean isRegisterScreen = false;
+    UserService uS = new UserService();
+    MenuWindow menu = new MenuWindow();
+
+    public String login,password;
 
     public LoginWindow() {
 
@@ -25,19 +32,19 @@ public class LoginWindow extends JFrame {
 
 
         JLabel background = new JLabel(tlo);
-        background.setBounds(0, 0, 790, 785);
+        background.setBounds(0, -5, 790, 785);
         background.setLayout(null);
         background.setVisible(true);
         add(background);
 //tu
         JLabel password2 = new JLabel(pass2);
-        password2.setBounds(238, 443, 319, 75);
+        password2.setBounds(242, 443, 319, 75);
         password2.setLayout(null);
         password2.setVisible(false);
         background.add(password2);
 //blady login
         JLabel loginButton2 = new JLabel(przycisk2);
-        loginButton2.setBounds(238, 506, 322, 56);
+        loginButton2.setBounds(235, 494, 322, 56);
         loginButton2.setLayout(null);
         background.add(loginButton2);
         loginButton2.setVisible(false);
@@ -45,26 +52,38 @@ public class LoginWindow extends JFrame {
 
         //blady register
         JLabel registerButton2 = new JLabel(przycisk3);
-        registerButton2.setBounds(345, 570, 100, 30);
+        registerButton2.setBounds(344, 560, 100, 30);
         registerButton2.setLayout(null);
         background.add(registerButton2);
         registerButton2.setVisible(false);
 
-//dodac w przyszlosci domyslny text: wpisz login/wpisz haslo
-        JTextField loginField = new JTextField();
-        loginField.setBounds(277, 285, 300, 20);
+
+        JTextField loginField = new JTextField("Wpisz login");
+        JPasswordField passwordField = new JPasswordField("Wpisz haslo");
+        JPasswordField passwordField2 = new JPasswordField("Wpisz haslo");
+
+        loginField.setBounds(278, 281, 300, 20);
         loginField.setBorder(null);
         loginField.setOpaque(false);
+        loginField.addActionListener(e -> {
+            login = loginField.getText();
+            System.out.println(login);
+            passwordField.requestFocusInWindow();
+        });
         background.add(loginField);
 
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(277, 382, 300, 20);
+
+        passwordField.setBounds(279, 378, 300, 20);
         passwordField.setBorder(null);
         passwordField.setOpaque(false);
+        passwordField.addActionListener(e -> {
+            password = passwordField.getText();
+            System.out.println(password);
+        });
         background.add(passwordField);
 
-        JPasswordField passwordField2 = new JPasswordField();
-        passwordField2.setBounds(277, 479, 300, 20);
+
+        passwordField2.setBounds(281, 480, 300, 20);
         passwordField2.setBorder(null);
         passwordField2.setOpaque(false);
         passwordField2.setVisible(false);
@@ -85,10 +104,33 @@ public class LoginWindow extends JFrame {
                 loginButton2.setVisible(false);
             }
         });
+//tu1
+        if (isLogginScreen){
+            loginButton.addActionListener(e -> {
+                login = loginField.getText();
+                password = passwordField.getText();
+                if(uS.logging(login, password))
+                {
+                    setVisible(false);
+                    menu.setVisible(true);
+                }else
+                {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Nieprawidłowy login lub hasło",
+                            "Błąd logowania",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            });
+    }else
+        {
 
-        loginButton.addActionListener(e -> {
-            System.out.println("Kliknieto zaloguj");
-        });
+
+        }
+
+
+
         loginButton.setBorder(null);
         loginButton.setOpaque(false);
         background.add(loginButton);
@@ -120,7 +162,7 @@ public class LoginWindow extends JFrame {
             }
         });
 
-
+//tu2
             registerButton.addActionListener(e -> {
                 if (isRegisterScreen == false) {
                     System.out.println("Kliknieto zaloz konto");
@@ -137,29 +179,39 @@ public class LoginWindow extends JFrame {
 
                     isLogginScreen = false;
                     isRegisterScreen = true;
+
                 }else
                 {
                     System.out.println("Kliknieto zaloz konto");
+                    login = loginField.getText();
+                    password = passwordField.getText();
+                   String passwordToCheck = passwordField2.getText();
+                   if(password.equals(passwordToCheck))
+                   {
+                       uS.register(login, password);
+                       password2.setVisible(false);
+                       passwordField2.setVisible(false);
+                       loginButton.setVisible(true);
+                       hideLogin.setVisible(false);
+                       isLogginScreen = true;
+                       isRegisterScreen = false;
 
-                    password2.setVisible(false);
-                    passwordField2.setVisible(false);
+                   }
+                   else
+                   {
+                       System.out.println("nie zgadzaja");
+                       //komunikat hasła się nie zgadzają
+                       //przejście do pola tekstowego login
+
+                   }
+
                     // background.setComponentZOrder(passwordField2, 0);
                     //background.revalidate();
                     //background.repaint();
-
-
-                    loginButton.setVisible(true);
-                    hideLogin.setVisible(false);
-
-                    isLogginScreen = true;
-                    isRegisterScreen = false;
-
-
                 }
 
 
             });
-
 
             registerButton.setBorder(null);
             registerButton.setOpaque(false);
@@ -167,6 +219,11 @@ public class LoginWindow extends JFrame {
             registerButton.setContentAreaFilled(false);
             registerButton.setFocusPainted(false);
 
+
+        SendPackWindow.textListener(loginField,"Wpisz login");
+        SendPackWindow.textListener(passwordField,"Wpisz haslo");
+        SendPackWindow.textListener(passwordField2,"Wpisz haslo");
+//komunikaty
 
         }
 
