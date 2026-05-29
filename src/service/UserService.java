@@ -4,6 +4,7 @@ import GUI.LoginWindow;
 import GUI.MenuWindow;
 import model.User;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,14 +24,24 @@ public class UserService {
    public void register(String loginn, String hasloo) {
         String login = loginn;
         String haslo = hasloo;
+        boolean registered=false;
         int countdown = 4;
-        do {
 
+       if(loginExist(login))
+        {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Login już istnieje",
+                    "Błąd rejestracji",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-        while (loginExist(login));
-        User user = new User(login, haslo, nextID++);
-        users.add(user);
-        System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
+       else{
+           User user = new User(login, haslo, nextID++);
+           users.add(user);
+           System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
+       }
+
 
     }
 

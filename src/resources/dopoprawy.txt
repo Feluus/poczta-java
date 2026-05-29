@@ -1,0 +1,50 @@
+ekran logowania
+
+pole login: 
+max 12 znaków
+ograniczenie wpisywania 
+hasło: 
+ograniczenie do 24 znaków
+
+dobry login i złe hasło:
+-komunikat nieprawidłowe hasło
+
+zły login:
+-komunikat nie ma takiego loginu
+
+dobry login i hasło:
+-przejście do menu głównego 
+
+rejestracja:
+1. czy taki login już jest
+2. takie same hasła: zarejestrowano użytkownika ,,login,,
+3. różne hasła : ,,podano różne hasła,,
+
+ekran menu:
+-dzień dobry ,,login,,
+
+-przycisk paczki nowy ekran
+-historia paczek nowy ten sam ekran 
+
+nadaj paczkę:
+-tylko 1 gabaryt jednocześnie
+-numer telefonu max 9 cyfr
+-dalej zmienić na ,,zapłać,,
+-prosty ekran płatności
+
+śledzenie paczki:
+-nie ma takiej paczki
+
+profil użytkownika: 
+-można wybrać awatar
+-wyloguj działa
+-historia paczek przechodzi do przycisku paczki a tam wszystkie paczki użytkownika i można złożyć formularz o zwrot
+
+
+
+
+
+
+
+
+

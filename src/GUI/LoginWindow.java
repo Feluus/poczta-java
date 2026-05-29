@@ -183,8 +183,8 @@ public class LoginWindow extends JFrame {
                 }else
                 {
                     System.out.println("Kliknieto zaloz konto");
-                    login = loginField.getText();
-                    password = passwordField.getText();
+                   String login = loginField.getText();
+                   String password = passwordField.getText();
                    String passwordToCheck = passwordField2.getText();
                    if(password.equals(passwordToCheck))
                    {
@@ -199,8 +199,12 @@ public class LoginWindow extends JFrame {
                    }
                    else
                    {
-                       System.out.println("nie zgadzaja");
-                       //komunikat hasła się nie zgadzają
+                       JOptionPane.showMessageDialog(
+                               this,
+                               "Hasła się nie zgadzają",
+                               "Błąd rejestracji",
+                               JOptionPane.ERROR_MESSAGE
+                       );
                        //przejście do pola tekstowego login
 
                    }
