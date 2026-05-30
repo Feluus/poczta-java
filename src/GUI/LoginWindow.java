@@ -40,7 +40,7 @@ public class LoginWindow extends JFrame {
         background.setLayout(null);
         background.setVisible(true);
         add(background);
-//tu
+
         JLabel password2 = new JLabel(pass2);
         password2.setBounds(242, 443, 319, 75);
         password2.setLayout(null);
@@ -127,13 +127,7 @@ public class LoginWindow extends JFrame {
                     );
                 }
             });
-    }else
-        {
-
-
-        }
-
-
+    }
 
         loginButton.setBorder(null);
         loginButton.setOpaque(false);
@@ -170,7 +164,6 @@ public class LoginWindow extends JFrame {
             registerButton.addActionListener(e -> {
                 if (isRegisterScreen == false) {
                     System.out.println("Kliknieto zaloz konto");
-
                     password2.setVisible(true);
                     passwordField2.setVisible(true);
                     background.setComponentZOrder(passwordField2, 0);
@@ -181,6 +174,9 @@ public class LoginWindow extends JFrame {
                     loginButton.setVisible(false);
                     hideLogin.setVisible(true);
 
+                    loginField.setText("Wpisz login");
+                    passwordField.setText("Wpisz haslo");
+                    passwordField2.setText("Wpisz halso");
                     isLogginScreen = false;
                     isRegisterScreen = true;
 

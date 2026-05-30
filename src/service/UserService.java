@@ -10,14 +10,11 @@ import java.util.Scanner;
 
 public class UserService {
     ArrayList<User> users = new ArrayList<>();
-    User user = new User("", "", 1);
+    User user = new User("admin", "admin", 1);
 
-    int nextID = 1;
+    int nextID = 2;
 
     Scanner sc = new Scanner(System.in);
-    MenuWindow menu = new MenuWindow();
-
-
     boolean zalogowano = false;
 
 
@@ -27,19 +24,16 @@ public class UserService {
         boolean registered=false;
         int countdown = 4;
 
-       if(loginExist(login))
+       if(!loginExist(login))
         {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Login już istnieje",
-                    "Błąd rejestracji",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            User user = new User(login, haslo, nextID++);
+            users.add(user);
+            System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
+            JOptionPane.showMessageDialog(null,"Zarejestrowano użytkownika o loginie: "+ user.login,"Błąd rejestracji",JOptionPane.INFORMATION_MESSAGE );
+
         }
-       else{
-           User user = new User(login, haslo, nextID++);
-           users.add(user);
-           System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
+       else if(loginExist(login)){
+           JOptionPane.showMessageDialog(null,"login już istnieje","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
        }
 
 
@@ -51,7 +45,7 @@ public class UserService {
         for (int i = 0; i < users.size(); i++) {
 
             if (users.get(i).login.equals(login)) {
-                System.out.println("podany login jest zajety");
+
                 return true;
 
             }
@@ -71,12 +65,9 @@ public class UserService {
         boolean zalogowano=false;
 
 
-        do {
+       /* do {
             countdown--;
-            if (countdown == 0) {
-                System.out.println("dane zostaly wprowadzone zle po raz 3, sprobuj ponownie pozniej");
-                break;
-            }
+
             if (goodPassword == true)
             {
                 break;
@@ -84,18 +75,19 @@ public class UserService {
 
             //login = sc.next();
             for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).login.equals(login)) {
+
+                if(users.get(i).equals(null)){
+                    JOptionPane.showMessageDialog(null,"nie ma takiego użytkownikaaa","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+
+                }
+                else if (users.get(i).login.equals(login)) {
                     goodLogin = true;
+
                     do {
                         whichACC=i;
                         countdownLogin--;
-                        if (countdownLogin == 0) {
-                            System.out.println("haslo zostalo wprowadzone zle po raz 3, sprobuj ponownie pozniej");
-                            break;
-                        }
-                        System.out.println("dobry login, teraz podaj haslo");
 
-                        //user.sprawdzHaslo(login, haslo);
+
                         if(user.sprawdzHaslo(users.get(i).haslo, haslo)==true)
                         {
                             System.out.println("hasło poprawne");
@@ -104,22 +96,73 @@ public class UserService {
                         }
                         else
                         {
+                            JOptionPane.showMessageDialog(null,"wpisano złe hasło","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
                             System.out.println("zle haslo mordeczko");
+
                         }
                     } while(goodPassword==false);
+
+
 
 
                 }
                 else
                 {
-                    System.out.println("nie ma takiego loginu w bazie");
+                    JOptionPane.showMessageDialog(null,"nie ma takiego loginu w bazie","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
                 }
             }
 
 
         }while (goodLogin) ;
-        System.out.println("pomyślnie zalogowano dla konta "+ users.get(whichACC).login);
-        zalogowano=true;
+
+        */
+
+            for (int i = 0; i < users.size(); i++) {
+
+                if(users.get(i).login.equals(null)){
+                    JOptionPane.showMessageDialog(null,"nie ma takiego użytkownikaaa","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+
+                }
+                else if (users.get(i).login.equals(login)) {
+                    goodLogin = true;
+
+
+                        whichACC=i;
+                        countdownLogin--;
+
+
+                        if(user.sprawdzHaslo(users.get(i).haslo, haslo)==true)
+                        {
+                            System.out.println("hasło poprawne");
+                            goodPassword=true;
+                            zalogowano=true;
+
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null,"wpisano złe hasło","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+                            System.out.println("zle haslo");
+                            zalogowano=false;
+
+                        }
+
+
+
+
+
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"nie ma takiego loginu w bazie","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+                    zalogowano=false;
+                }
+            }
+
+
+
+
+
+       // System.out.println("pomyślnie zalogowano dla konta "+ users.get(whichACC).login);
         return zalogowano;
 
 
