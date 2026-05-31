@@ -5,18 +5,21 @@ ekran menu:
 
 nadaj paczkę:
 -tylko 1 gabaryt jednocześnie
--numer telefonu max 9 cyfr
 -dalej zmienić na ,,zapłać,,
 -prosty ekran płatności
 
-śledzenie paczki:
--nie ma takiej paczki
+
 
 profil użytkownika: 
 -można wybrać awatar
 -wyloguj działa
 -historia paczek przechodzi do przycisku paczki a tam wszystkie paczki użytkownika i można złożyć formularz o zwrot
 
+PRZYCISKI POWRÓT DO MENU
+logowanie -> nie może być login wpisz login
+dalej w send pack ---> przechodzi do danych uzytkownika dopiero potem płatność?
+wyloguj --> odpala login window i zeruje wszystkie pola
+przesuniecie o dlugosc !!! jutro zrobic
 
 zrobione:
 
@@ -39,6 +42,9 @@ rejestracja:
 1. czy taki login już jest
 2. takie same hasła: zarejestrowano użytkownika ,,login,,
 3. różne hasła : ,,podano różne hasła,,
+
+śledzenie paczki:
+-nie ma takiej paczki
 
 
 

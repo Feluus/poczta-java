@@ -1,8 +1,11 @@
 package GUI;
+import Utils.Utils;
+
 import javax.swing.*;
 public class FollowPackWindow extends JFrame{
 
     public boolean isFirstClick=true;
+    Utils util = new Utils();
 
     public FollowPackWindow(){
         setTitle("Śledzenie paczki");
@@ -32,30 +35,32 @@ public class FollowPackWindow extends JFrame{
 
 
 //pole wpisania kodu
-        JTextField loginField = new JTextField("Wpisz numer paczki");
-        loginField.setBounds(313, 230, 270, 20);
-        loginField.setBorder(null);
-        loginField.setOpaque(false);
-        loginField.setVisible(true);
-        background.add(loginField);
-        loginField.setFocusable(false);
-        loginField.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTextField codeField = new JTextField("Wpisz numer paczki");
+        codeField.setBounds(313, 230, 270, 20);
+        codeField.setBorder(null);
+        codeField.setOpaque(false);
+        codeField.setVisible(true);
+        background.add(codeField);
+        codeField.setFocusable(false);
+        util.maxTextLenght(codeField, 9);
+        codeField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                loginField.setFocusable(true);
-                loginField.requestFocusInWindow();
+                codeField.setFocusable(true);
+                codeField.requestFocusInWindow();
 
-            }
+                            }
         });
 
-        loginField.addFocusListener(new java.awt.event.FocusAdapter() {
+        codeField.addFocusListener(new java.awt.event.FocusAdapter() {
 
 
             public void focusGained(java.awt.event.FocusEvent e) {
 
 
-                if(loginField.getText().equals("Wpisz numer paczki")) {
+                if(codeField.getText().equals("Wpisz numer paczki")) {
 
-                    loginField.setText("");
+                    codeField.setText("");
+
 
                 }
 
@@ -63,8 +68,8 @@ public class FollowPackWindow extends JFrame{
 
             public void focusLost(java.awt.event.FocusEvent e) {
 
-                if(loginField.getText().isEmpty()) {
-                    loginField.setText("Wpisz numer paczki");
+                if(codeField.getText().isEmpty()) {
+                    codeField.setText("Wpisz numer paczki");
                 }
 
             }
@@ -80,6 +85,12 @@ public class FollowPackWindow extends JFrame{
         followButton2.setBounds(255, 300, 361, 70);
         followButton.addActionListener(e -> {
             System.out.println("Kliknieto sledz");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Nie ma takiej paczki w bazie",
+                    "Błąd wyszukiwania",
+                    JOptionPane.ERROR_MESSAGE
+            );
         });
         followButton.setBorder(null);
         followButton.setOpaque(false);

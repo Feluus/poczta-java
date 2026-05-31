@@ -16,6 +16,7 @@ public class User {
     }
 
 
+
  public boolean sprawdzHaslo(String hasloBaza, String hasloUser)
 {
     if(hasloBaza.equals(hasloUser))
@@ -32,6 +33,11 @@ public class User {
 
     return zalogowano;
 
+}
+
+public String getLogin()
+{
+    return login;
 }
 
 }

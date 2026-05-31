@@ -1,10 +1,13 @@
 package GUI;
 
+import Utils.Utils;
+
 import javax.swing.*;
 import java.awt.Image;
 
 public class SendPackWindow extends JFrame {
    public static boolean isClicked =false;
+    Utils util = new Utils();
 
 
     public static void clickListener(JButton buttonTitle, JLabel buttonTitle2) {
@@ -193,6 +196,11 @@ public class SendPackWindow extends JFrame {
         clickListener(przyciskGab, aButton);
         clickListener(przyciskGab2, bButton);
         clickListener(przyciskGab3, cButton);
+
+        util.maxTextLenght(przyciskPoz,30);
+        util.maxTextLenght(przyciskPoz2,20);
+        util.maxTextLenght(przyciskPoz3,70);
+        util.maxTextLenghtPhone(przyciskPoz4,9);
 
 
 

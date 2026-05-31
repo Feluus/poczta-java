@@ -2,7 +2,7 @@ package GUI;
 import javax.swing.*;
 public class UserProfileWindow extends JFrame {
     UserProfileWindow(){
-        setTitle("nadanie paczki");
+        setTitle("Profil użytkownika");
         setSize(800, 820);
         setLayout(null);
         setResizable(false);
@@ -62,8 +62,6 @@ public class UserProfileWindow extends JFrame {
 
         JButton przycisk3 = SendPackWindow.createButton(420,105,40,40,"");
         background.add(przycisk3);
-
-
         SendPackWindow.placeBlady(432,118,32,32, avatarCzerwButton);
         background.add(avatarCzerwButton);
 

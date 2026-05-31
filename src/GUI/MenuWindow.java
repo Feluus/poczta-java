@@ -1,12 +1,17 @@
 package GUI;
 
+import model.User;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class MenuWindow extends JFrame{
-    public MenuWindow(){
+    public MenuWindow(String loginName){
         FollowPackWindow follow = new FollowPackWindow();
         SendPackWindow SendPack = new SendPackWindow();
         UserProfileWindow UserProfile = new UserProfileWindow();
+
+
 
     setTitle("PocztaPolska");
     setSize(800,820);
@@ -25,6 +30,10 @@ public class MenuWindow extends JFrame{
         JLabel followButton2 = new JLabel(sledz);
         JLabel profileButton2 = new JLabel(profil);
         JLabel packsButton2 = new JLabel(maly);
+        JLabel welcomeLabel = new JLabel(loginName);
+
+
+
 
 
 
@@ -151,6 +160,21 @@ public class MenuWindow extends JFrame{
         background.add(packsButton);
         packsButton.setContentAreaFilled(false);
         packsButton.setFocusPainted(false);
+
+
+
+        /*void welcomeLabelMova(loginName.getLenght())
+        {
+przesuniecie o dlugosc !!! jutro zrobic
+        }
+*/
+
+        welcomeLabel.setBounds(375, 136, 160, 40);
+        welcomeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        background.add(welcomeLabel);
+        welcomeLabel.setVisible(true);
+
+
 
 
 }}

@@ -1,6 +1,7 @@
 package GUI;
 
 import Utils.Utils;
+import model.User;
 import service.UserService;
 
 import javax.swing.*;
@@ -14,10 +15,12 @@ public class LoginWindow extends JFrame {
     public boolean isLogginScreen = true;
     public boolean isRegisterScreen = false;
     UserService uS = new UserService();
-    MenuWindow menu = new MenuWindow();
+
     Utils utils= new Utils();
 
     public String login,password;
+
+
 
     public LoginWindow() {
 
@@ -73,6 +76,7 @@ public class LoginWindow extends JFrame {
             login = loginField.getText();
             System.out.println(login);
             passwordField.requestFocusInWindow();
+
         });
         background.add(loginField);
 
@@ -108,7 +112,7 @@ public class LoginWindow extends JFrame {
                 loginButton2.setVisible(false);
             }
         });
-//tu1
+//logowanie
         if (isLogginScreen){
             loginButton.addActionListener(e -> {
                 login = loginField.getText();
@@ -116,7 +120,11 @@ public class LoginWindow extends JFrame {
                 if(uS.logging(login, password))
                 {
                     setVisible(false);
+                    MenuWindow menu = new MenuWindow(login);
                     menu.setVisible(true);
+
+
+
                 }else
                 {
                     JOptionPane.showMessageDialog(

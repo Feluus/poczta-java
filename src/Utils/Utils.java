@@ -17,5 +17,34 @@ public class Utils extends JFrame {
                 }
             }
         });
+
+
     }
+
+    public void maxTextLenghtPhone(JTextField fieldName, int lenght) {
+
+
+        fieldName.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (fieldName.getText().length() >= lenght) {
+                    e.consume();
+                }
+                char c = e.getKeyChar();
+                if(!Character.isDigit(c)){
+                    e.consume();
+                }
+            }
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
 }
