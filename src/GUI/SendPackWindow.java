@@ -124,33 +124,29 @@ public class SendPackWindow extends JFrame {
         przyciskPoz2.setText( "Miejscowość");
         przyciskPoz3.setText( "Ulica, numer budynku/mieszkania");
         przyciskPoz4.setText( "Numer telefonu");
-
-
     }
 
 
 
-    public SendPackWindow() {
+    public SendPackWindow(MenuWindow menu) {
         setTitle("nadanie paczki");
         setSize(800, 820);
         setLayout(null);
         setResizable(false);
         setVisible(false);
 
-        ImageIcon tlo = new ImageIcon("src/resources/nadaj.jpg");
+        ImageIcon tlo = new ImageIcon("src/resources/nadajv2.jpg");
         ImageIcon dalej = new ImageIcon("src/resources/dalej.jpg");
         ImageIcon a = new ImageIcon("src/resources/a.jpg");
         ImageIcon b = new ImageIcon("src/resources/b.jpg");
         ImageIcon c = new ImageIcon("src/resources/c.jpg");
+        ImageIcon d = new ImageIcon("src/resources/menuklikniete.jpg");
 
         JLabel dalejButton = new JLabel(dalej);
         JLabel aButton = new JLabel(a);
         JLabel bButton = new JLabel(b);
         JLabel cButton = new JLabel(c);
-
-
-
-
+        JLabel menuKlikniete = new JLabel(d);
 
 
         Image img = tlo.getImage().getScaledInstance(800, 820, Image.SCALE_SMOOTH);
@@ -167,10 +163,6 @@ public class SendPackWindow extends JFrame {
                 System.out.println("X: " + e.getX() + " Y: " + e.getY());
             }
         });
-
-
-
-
         JButton przyciskGab = createButton(240, 169, 100, 77, "");
         background.add(przyciskGab);
         background.add(aButton);
@@ -188,16 +180,24 @@ public class SendPackWindow extends JFrame {
         placeBlady(235, 588, 340, 60, dalejButton);
         background.add(dalejButton);
 
+        JButton menuKliknieteButton = createButton(321, 676, 162, 39, "");
+        background.add(menuKliknieteButton);
+        placeBlady(295, 660, 218, 73, menuKlikniete);
+        menuKliknieteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                setVisible(false);
+                menu.setVisible(true);
+            }
+        });
+        background.add(menuKlikniete);
+
 
 
 
 
         background.add(przyciskPoz);
-
         background.add(przyciskPoz2);
-
         background.add(przyciskPoz3);
-
         background.add(przyciskPoz4);
 
         textListener(przyciskPoz, "Imię i Nazwisko");
@@ -206,6 +206,7 @@ public class SendPackWindow extends JFrame {
         textListener(przyciskPoz4, "Numer telefonu");
 
         mouseListenerIMG(przyciskDalej, dalejButton);
+        mouseListenerIMG(menuKliknieteButton, menuKlikniete);
        // mouseListenerIMG(przyciskGab, aButton);
        // mouseListenerIMG(przyciskGab2, bButton);
         //mouseListenerIMG(przyciskGab3, cButton);
@@ -218,11 +219,5 @@ public class SendPackWindow extends JFrame {
         util.maxTextLenght(przyciskPoz2,20);
         util.maxTextLenght(przyciskPoz3,70);
         util.maxTextLenghtPhone(przyciskPoz4,9);
-
-
-
-
-
-
 
     }}

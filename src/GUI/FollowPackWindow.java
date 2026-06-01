@@ -9,7 +9,7 @@ public class FollowPackWindow extends JFrame{
     public boolean isFirstClick=true;
     Utils util = new Utils();
 
-    public FollowPackWindow(){
+    public FollowPackWindow(MenuWindow menu){
         setTitle("Śledzenie paczki");
         setSize(800,820);
         setLayout(null);
@@ -19,9 +19,11 @@ public class FollowPackWindow extends JFrame{
 
         ImageIcon tlo =new ImageIcon("src/resources/sledzenie.jpg");
         ImageIcon sledz3 =new ImageIcon("src/resources/sledz3.jpg");
+        ImageIcon d = new ImageIcon("src/resources/menuklikniete.jpg");
 
         JLabel background = new JLabel(tlo);
         JLabel followButton2 = new JLabel(sledz3);
+        JLabel menuKlikniete = new JLabel(d);
 
         background.setBounds(-40,0,872,878);
         background.setLayout(null);
@@ -111,6 +113,20 @@ public class FollowPackWindow extends JFrame{
                 followButton2.setVisible(false);
             }
         });
+
+
+
+        JButton menuKliknieteButton = SendPackWindow.createButton(364, 390, 147, 39, "");
+        background.add(menuKliknieteButton);
+        SendPackWindow.placeBlady(338, 380, 200, 73, menuKlikniete);
+        SendPackWindow.mouseListenerIMG(menuKliknieteButton, menuKlikniete);
+        menuKliknieteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                setVisible(false);
+                menu.setVisible(true);
+            }
+        });
+        background.add(menuKlikniete);
 
 
 

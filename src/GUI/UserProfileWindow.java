@@ -17,12 +17,14 @@ public class UserProfileWindow extends JFrame {
         ImageIcon historia = new ImageIcon("src/resources/historia.jpg");
         ImageIcon wyloguj = new ImageIcon("src/resources/wyloguj.jpg");
         ImageIcon avatarCzerw = new ImageIcon("src/resources/avatarCzerw.jpg");
+        ImageIcon d = new ImageIcon("src/resources/menukliknietev2.jpg");
 
 
         JLabel background = new JLabel(tlo);
         JLabel historiaButton = new JLabel(historia);
         JLabel wylogujButton= new JLabel(wyloguj);
         JLabel avatarCzerwButton = new JLabel(avatarCzerw);
+        JLabel menuKlikniete = new JLabel(d);
 
 
         background.setBounds(0, 0, 833, 847);
@@ -94,6 +96,18 @@ public class UserProfileWindow extends JFrame {
         SendPackWindow.mouseListenerIMG(przycisk, historiaButton);
         SendPackWindow.mouseListenerIMG(przycisk2, wylogujButton);
         SendPackWindow.mouseListenerIMG(przycisk3, avatarCzerwButton);
+
+        JButton menuKliknieteButton = SendPackWindow.createButton(355, 649, 128, 39, "");
+        background.add(menuKliknieteButton);
+        SendPackWindow.placeBlady(340, 642, 160, 50, menuKlikniete);
+        SendPackWindow.mouseListenerIMG(menuKliknieteButton, menuKlikniete);
+        menuKliknieteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                setVisible(false);
+                menu.setVisible(true);
+            }
+        });
+        background.add(menuKlikniete);
 
 
 

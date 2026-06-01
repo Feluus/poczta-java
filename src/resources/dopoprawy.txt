@@ -1,5 +1,4 @@
 ekran menu:
-
 -przycisk paczki nowy ekran
 -historia paczek nowy ten sam ekran 
 

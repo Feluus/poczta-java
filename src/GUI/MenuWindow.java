@@ -14,8 +14,8 @@ return x;
     }
     public MenuWindow(String loginName){
 
-        SendPackWindow SendPack = new SendPackWindow();
-        FollowPackWindow follow = new FollowPackWindow();
+        SendPackWindow SendPack = new SendPackWindow(this);
+        FollowPackWindow follow = new FollowPackWindow(this);
         UserProfileWindow UserProfile = new UserProfileWindow(SendPack, follow, this);
 
 loginNamee=loginName;
@@ -86,6 +86,7 @@ loginNamee=loginName;
 
         sendPackButton.addActionListener(e -> {
             System.out.println("Kliknieto nadaj");
+            setVisible(false);
             SendPack.setVisible(true);
 
         });
@@ -111,9 +112,8 @@ loginNamee=loginName;
             }
         });
         followButton.addActionListener(e -> {
-            System.out.println("Kliknieto sledz");
 
-
+            setVisible(false);
             follow.setVisible(true);
 
         });
@@ -139,7 +139,9 @@ loginNamee=loginName;
         });
         profileButton.addActionListener(e -> {
             System.out.println("Kliknieto profil uzytkownika");
+            setVisible(false);
             UserProfile.setVisible(true);
+
 
         });
         profileButton.setBorder(null);
