@@ -1,17 +1,24 @@
 package GUI;
 
-import model.User;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class MenuWindow extends JFrame{
+    public String loginNamee;
+
+
+  public int welcomeLabelMova(int x)
+    {
+x = x -2*loginNamee.length();
+return x;
+    }
     public MenuWindow(String loginName){
-        FollowPackWindow follow = new FollowPackWindow();
+
         SendPackWindow SendPack = new SendPackWindow();
-        UserProfileWindow UserProfile = new UserProfileWindow();
+        FollowPackWindow follow = new FollowPackWindow();
+        UserProfileWindow UserProfile = new UserProfileWindow(SendPack, follow, this);
 
-
+loginNamee=loginName;
 
     setTitle("PocztaPolska");
     setSize(800,820);
@@ -30,7 +37,7 @@ public class MenuWindow extends JFrame{
         JLabel followButton2 = new JLabel(sledz);
         JLabel profileButton2 = new JLabel(profil);
         JLabel packsButton2 = new JLabel(maly);
-        JLabel welcomeLabel = new JLabel(loginName);
+        JLabel welcomeLabel = new JLabel(loginName+"!");
 
 
 
@@ -105,6 +112,8 @@ public class MenuWindow extends JFrame{
         });
         followButton.addActionListener(e -> {
             System.out.println("Kliknieto sledz");
+
+
             follow.setVisible(true);
 
         });
@@ -163,13 +172,10 @@ public class MenuWindow extends JFrame{
 
 
 
-        /*void welcomeLabelMova(loginName.getLenght())
-        {
-przesuniecie o dlugosc !!! jutro zrobic
-        }
-*/
 
-        welcomeLabel.setBounds(375, 136, 160, 40);
+
+
+        welcomeLabel.setBounds(welcomeLabelMova(379), 136, 160, 40);
         welcomeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         background.add(welcomeLabel);
         welcomeLabel.setVisible(true);

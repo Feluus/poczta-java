@@ -1,28 +1,26 @@
 ekran menu:
--dzień dobry ,,login,,
+
 -przycisk paczki nowy ekran
 -historia paczek nowy ten sam ekran 
 
 nadaj paczkę:
 -tylko 1 gabaryt jednocześnie
--dalej zmienić na ,,zapłać,,
 -prosty ekran płatności
 
-
-
-profil użytkownika: 
--można wybrać awatar
--wyloguj działa
+profil użytkownika:
+-można wybrać awatar (drag&drop)
 -historia paczek przechodzi do przycisku paczki a tam wszystkie paczki użytkownika i można złożyć formularz o zwrot
 
 PRZYCISKI POWRÓT DO MENU
-logowanie -> nie może być login wpisz login
 dalej w send pack ---> przechodzi do danych uzytkownika dopiero potem płatność?
-wyloguj --> odpala login window i zeruje wszystkie pola
-przesuniecie o dlugosc !!! jutro zrobic
+
+
+
+
 
 zrobione:
-
+-wyloguj działa
+wyloguj --> odpala login window i zeruje wszystkie pola
 Pole login:
 max 12 znaków
 ograniczenie wpisywania

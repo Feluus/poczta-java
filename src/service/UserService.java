@@ -11,27 +11,27 @@ import java.util.Scanner;
 public class UserService {
     ArrayList<User> users = new ArrayList<>();
     User user = new User("admin", "admin", 1);
-
     int nextID = 2;
-
     Scanner sc = new Scanner(System.in);
-    boolean zalogowano = false;
+
 
 
    public void register(String loginn, String hasloo) {
         String login = loginn;
         String haslo = hasloo;
-        boolean registered=false;
-        int countdown = 4;
 
-       if(!loginExist(login))
+
+       if(login.equals("Wpisz login"))
         {
-            User user = new User(login, haslo, nextID++);
-            users.add(user);
-            System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
-            JOptionPane.showMessageDialog(null,"Zarejestrowano użytkownika o loginie: "+ user.login,"Błąd rejestracji",JOptionPane.INFORMATION_MESSAGE );
-
+            JOptionPane.showMessageDialog(null,"Wprowadź login!","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
         }
+       else if(!loginExist(login))
+       {
+           User user = new User(login, haslo, nextID++);
+           users.add(user);
+           System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
+           JOptionPane.showMessageDialog(null,"Zarejestrowano użytkownika o loginie: "+ user.login,"",JOptionPane.INFORMATION_MESSAGE );
+       }
        else if(loginExist(login)){
            JOptionPane.showMessageDialog(null,"login już istnieje","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
        }

@@ -4,6 +4,8 @@ import Utils.Utils;
 import javax.swing.*;
 public class FollowPackWindow extends JFrame{
 
+    public static JTextField codeField = new JTextField("Wpisz numer paczki");
+
     public boolean isFirstClick=true;
     Utils util = new Utils();
 
@@ -35,19 +37,18 @@ public class FollowPackWindow extends JFrame{
 
 
 //pole wpisania kodu
-        JTextField codeField = new JTextField("Wpisz numer paczki");
+
         codeField.setBounds(313, 230, 270, 20);
         codeField.setBorder(null);
         codeField.setOpaque(false);
         codeField.setVisible(true);
         background.add(codeField);
         codeField.setFocusable(false);
-        util.maxTextLenght(codeField, 9);
+        util.maxTextLenghtPhone(codeField, 9);
         codeField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 codeField.setFocusable(true);
                 codeField.requestFocusInWindow();
-
                             }
         });
 

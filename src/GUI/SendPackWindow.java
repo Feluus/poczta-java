@@ -9,6 +9,11 @@ public class SendPackWindow extends JFrame {
    public static boolean isClicked =false;
     Utils util = new Utils();
 
+    public static JTextField przyciskPoz = createTextField(278, 329, 234, 15, "Imię i Nazwisko");
+    public static JTextField przyciskPoz2 = createTextField(278, 388, 234, 15, "Miejscowość");
+    public static JTextField przyciskPoz3 = createTextField(278, 444, 234, 15, "Ulica, numer budynku/mieszkania");
+    public static JTextField przyciskPoz4 = createTextField(278, 504, 234, 15, "Numer telefonu");
+
 
     public static void clickListener(JButton buttonTitle, JLabel buttonTitle2) {
         final int[] tempo = {1};
@@ -113,6 +118,18 @@ public class SendPackWindow extends JFrame {
 
 
     }
+    public static void setDefaultText()
+    {
+        przyciskPoz.setText( "Imię i Nazwisko");
+        przyciskPoz2.setText( "Miejscowość");
+        przyciskPoz3.setText( "Ulica, numer budynku/mieszkania");
+        przyciskPoz4.setText( "Numer telefonu");
+
+
+    }
+
+
+
     public SendPackWindow() {
         setTitle("nadanie paczki");
         setSize(800, 820);
@@ -174,13 +191,13 @@ public class SendPackWindow extends JFrame {
 
 
 
-        JTextField przyciskPoz = createTextField(278, 329, 234, 15, "Imię i Nazwisko");
+
         background.add(przyciskPoz);
-        JTextField przyciskPoz2 = createTextField(278, 388, 234, 15, "Miejscowość");
+
         background.add(przyciskPoz2);
-        JTextField przyciskPoz3 = createTextField(278, 444, 234, 15, "Ulica, numer budynku/mieszkania");
+
         background.add(przyciskPoz3);
-        JTextField przyciskPoz4 = createTextField(278, 504, 234, 15, "Numer telefonu");
+
         background.add(przyciskPoz4);
 
         textListener(przyciskPoz, "Imię i Nazwisko");
@@ -201,6 +218,8 @@ public class SendPackWindow extends JFrame {
         util.maxTextLenght(przyciskPoz2,20);
         util.maxTextLenght(przyciskPoz3,70);
         util.maxTextLenghtPhone(przyciskPoz4,9);
+
+
 
 
 

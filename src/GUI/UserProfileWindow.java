@@ -1,12 +1,17 @@
 package GUI;
+import Utils.Utils;
+
 import javax.swing.*;
 public class UserProfileWindow extends JFrame {
-    UserProfileWindow(){
+    UserProfileWindow(SendPackWindow SendPack,FollowPackWindow follow, MenuWindow menu){
+        Utils util=new Utils();
+
         setTitle("Profil użytkownika");
         setSize(800, 820);
         setLayout(null);
         setResizable(false);
         setVisible(false);
+
 
         ImageIcon tlo = new ImageIcon("src/resources/profiluzytkownika.jpg");
         ImageIcon historia = new ImageIcon("src/resources/historia.jpg");
@@ -40,13 +45,18 @@ public class UserProfileWindow extends JFrame {
         background.add(przyciskPoz2);
         JTextField przyciskPoz3 = SendPackWindow.createTextField(290,414,234,15,"ul. Bęczkowska 12, Kielce");
         background.add(przyciskPoz3);
-        JTextField przyciskPoz4 = SendPackWindow.createTextField(290,507,234,15,"000-000-000");
+        JTextField przyciskPoz4 = SendPackWindow.createTextField(290,507,234,15,"Numer telefonu");
         background.add(przyciskPoz4);
 
         SendPackWindow.textListener(przyciskPoz, "Jan");
         SendPackWindow.textListener(przyciskPoz2, "Kowalski");
         SendPackWindow.textListener(przyciskPoz3, "ul. Bęczkowska 12, Kielce");
-        SendPackWindow.textListener(przyciskPoz4, "000-000-000");
+        SendPackWindow.textListener(przyciskPoz4, "Numer telefonu");
+
+        util.maxTextLenght(przyciskPoz,20);
+        util.maxTextLenght(przyciskPoz2,30);
+        util.maxTextLenght(przyciskPoz3,80);
+        util.maxTextLenghtPhone(przyciskPoz4,9);
 
 
 
@@ -58,6 +68,21 @@ public class UserProfileWindow extends JFrame {
         JButton przycisk2 = SendPackWindow.createButton(355,710,130,37,"");
         background.add(przycisk2);
         SendPackWindow.placeBlady(355,710,130,37,wylogujButton);
+        przycisk2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+
+                przyciskPoz.setText( "Jan");
+                przyciskPoz2.setText( "Kowalski");
+                przyciskPoz3.setText( "ul. Bęczkowska 12, Kielce");
+                przyciskPoz4.setText( "Numer telefonu");
+                SendPack.setDefaultText();
+                follow.codeField.setText("Wpisz numer paczki");
+                menu.setVisible(false);
+                LoginWindow oknoLogin2 = new LoginWindow();
+                oknoLogin2.setVisible(true);
+                setVisible(false);
+            }
+        });
         background.add(wylogujButton);
 
         JButton przycisk3 = SendPackWindow.createButton(420,105,40,40,"");
