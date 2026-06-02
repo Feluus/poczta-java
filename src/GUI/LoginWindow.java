@@ -32,10 +32,10 @@ public class LoginWindow extends JFrame {
         setResizable(false);
 
 
-        ImageIcon tlo = new ImageIcon("src/resources/logowanie.jpg");
-        ImageIcon pass2 = new ImageIcon("src/resources/password2.jpg");
-        ImageIcon przycisk2 = new ImageIcon("src/resources/loginButton2.jpg");
-        ImageIcon przycisk3 = new ImageIcon("src/resources/registerButton2.jpg");
+        ImageIcon tlo = new ImageIcon(getClass().getResource("/resources/logowanie.jpg"));
+        ImageIcon pass2 = new ImageIcon(getClass().getResource("/resources/password2.jpg"));
+        ImageIcon przycisk2 = new ImageIcon(getClass().getResource("/resources/loginButton2.jpg"));
+        ImageIcon przycisk3 = new ImageIcon(getClass().getResource("/resources/registerButton2.jpg"));
 
 
         JLabel background = new JLabel(tlo);

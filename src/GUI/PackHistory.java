@@ -12,9 +12,9 @@ public class PackHistory extends JFrame{
         setResizable(false);
         setVisible(false);
 
-        ImageIcon tlo =new ImageIcon("src/resources/packhistory.jpg");
-        ImageIcon d = new ImageIcon("src/resources/menukliknietev3.jpg");
-        ImageIcon e = new ImageIcon("src/resources/reklamacjaKlikniete.jpg");
+        ImageIcon tlo =new ImageIcon(getClass().getResource("/resources/packhistory.jpg"));
+        ImageIcon d = new ImageIcon(getClass().getResource("/resources/menukliknietev3.jpg"));
+        ImageIcon e = new ImageIcon(getClass().getResource("/resources/reklamacjaklikniete.jpg"));
 
         JLabel background = new JLabel(tlo);
         JLabel menuKlikniete = new JLabel(d);

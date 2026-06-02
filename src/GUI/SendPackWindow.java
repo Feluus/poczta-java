@@ -135,12 +135,12 @@ public class SendPackWindow extends JFrame {
         setResizable(false);
         setVisible(false);
 
-        ImageIcon tlo = new ImageIcon("src/resources/nadajv2.jpg");
-        ImageIcon dalej = new ImageIcon("src/resources/dalej.jpg");
-        ImageIcon a = new ImageIcon("src/resources/a.jpg");
-        ImageIcon b = new ImageIcon("src/resources/b.jpg");
-        ImageIcon c = new ImageIcon("src/resources/c.jpg");
-        ImageIcon d = new ImageIcon("src/resources/menuklikniete.jpg");
+        ImageIcon tlo = new ImageIcon(getClass().getResource("/resources/nadajv2.jpg"));
+        ImageIcon dalej = new ImageIcon(getClass().getResource("/resources/dalej.jpg"));
+        ImageIcon a = new ImageIcon(getClass().getResource("/resources/a.jpg"));
+        ImageIcon b = new ImageIcon(getClass().getResource("/resources/b.jpg"));
+        ImageIcon c = new ImageIcon(getClass().getResource("/resources/c.jpg"));
+        ImageIcon d = new ImageIcon(getClass().getResource("/resources/menuklikniete.jpg"));
 
         JLabel dalejButton = new JLabel(dalej);
         JLabel aButton = new JLabel(a);

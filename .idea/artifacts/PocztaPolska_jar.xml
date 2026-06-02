@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PocztaPolska:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PocztaPolska_jar</output-path>
+    <root id="archive" name="PocztaPolska.jar">
+      <element id="module-output" name="PocztaPolska" />
+    </root>
+  </artifact>
+</component>

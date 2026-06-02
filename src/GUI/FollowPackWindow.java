@@ -17,9 +17,9 @@ public class FollowPackWindow extends JFrame{
         setResizable(false);
         setVisible(false);
 
-        ImageIcon tlo =new ImageIcon("src/resources/sledzenie.jpg");
-        ImageIcon sledz3 =new ImageIcon("src/resources/sledz3.jpg");
-        ImageIcon d = new ImageIcon("src/resources/menuklikniete.jpg");
+        ImageIcon tlo =new ImageIcon(getClass().getResource("/resources/sledzenie.jpg"));
+        ImageIcon sledz3 =new ImageIcon(getClass().getResource("/resources/sledz3.jpg"));
+        ImageIcon d = new ImageIcon(getClass().getResource("/resources/menuklikniete.jpg"));
 
         JLabel background = new JLabel(tlo);
         JLabel followButton2 = new JLabel(sledz3);

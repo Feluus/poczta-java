@@ -28,11 +28,11 @@ loginNamee=loginName;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
 
-        ImageIcon tlo =new ImageIcon("src/resources/menu.jpg");
-        ImageIcon nadaj =new ImageIcon("src/resources/nadaj2.jpg");
-        ImageIcon sledz =new ImageIcon("src/resources/sledz2.jpg");
-        ImageIcon profil =new ImageIcon("src/resources/profil2.jpg");
-        ImageIcon maly =new ImageIcon("src/resources/maly2.jpg");
+        ImageIcon tlo =new ImageIcon(getClass().getResource("/resources/menu.jpg"));
+        ImageIcon nadaj =new ImageIcon(getClass().getResource("/resources/nadaj2.jpg"));
+        ImageIcon sledz =new ImageIcon(getClass().getResource("/resources/sledz2.jpg"));
+        ImageIcon profil =new ImageIcon(getClass().getResource("/resources/profil2.jpg"));
+        ImageIcon maly =new ImageIcon(getClass().getResource("/resources/maly2.jpg"));
 
         JLabel background = new JLabel(tlo);
         JLabel sendPackButton2 = new JLabel(nadaj);

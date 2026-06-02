@@ -16,11 +16,11 @@ public class UserProfileWindow extends JFrame {
         setVisible(false);
 
 
-        ImageIcon tlo = new ImageIcon("src/resources/profiluzytkownika.jpg");
-        ImageIcon historia = new ImageIcon("src/resources/historia.jpg");
-        ImageIcon wyloguj = new ImageIcon("src/resources/wyloguj.jpg");
-        ImageIcon avatarCzerw = new ImageIcon("src/resources/avatarCzerw.jpg");
-        ImageIcon d = new ImageIcon("src/resources/menukliknietev2.jpg");
+        ImageIcon tlo = new ImageIcon(getClass().getResource("/resources/profiluzytkownika.jpg"));
+        ImageIcon historia = new ImageIcon(getClass().getResource("/resources/historia.jpg"));
+        ImageIcon wyloguj = new ImageIcon(getClass().getResource("/resources/wyloguj.jpg"));
+        ImageIcon avatarCzerw = new ImageIcon(getClass().getResource("/resources/avatarCzerw.jpg"));
+        ImageIcon d = new ImageIcon(getClass().getResource("/resources/menukliknietev2.jpg"));
 
 
         JLabel background = new JLabel(tlo);
