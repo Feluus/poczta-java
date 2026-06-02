@@ -1,6 +1,7 @@
 import GUI.LoginWindow;
 import GUI.MenuWindow;
 import GUI.FollowPackWindow;
+import GUI.PackHistory;
 import service.UserService;
 
 import java.util.Scanner;
@@ -23,6 +24,9 @@ okno.setVisible(true);
 //FollowPackWindow follow = new FollowPackWindow();
 //follow.setVisible(true);
         //uS.logging("jas","kapela");
+        //PackHistory paczka =new PackHistory(MenuWindow menu);
+        //paczka.setVisible(true);
+
 
     }}
 

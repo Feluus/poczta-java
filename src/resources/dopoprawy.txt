@@ -1,23 +1,11 @@
-ekran menu:
--przycisk paczki nowy ekran
--historia paczek nowy ten sam ekran 
-
-nadaj paczkę:
--tylko 1 gabaryt jednocześnie
--prosty ekran płatności
 
 profil użytkownika:
 -można wybrać awatar (drag&drop)
--historia paczek przechodzi do przycisku paczki a tam wszystkie paczki użytkownika i można złożyć formularz o zwrot
-
-PRZYCISKI POWRÓT DO MENU
-dalej w send pack ---> przechodzi do danych uzytkownika dopiero potem płatność?
-
-
-
-
 
 zrobione:
+ekran menu:
+-przycisk paczki nowy ekran
+-historia paczek W PROFIL UZYTKOWNIKA nowy ten sam ekran
 -wyloguj działa
 wyloguj --> odpala login window i zeruje wszystkie pola
 Pole login:

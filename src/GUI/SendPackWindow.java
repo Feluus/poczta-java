@@ -175,9 +175,15 @@ public class SendPackWindow extends JFrame {
         background.add(przyciskGab3);
         background.add(cButton);
         placeBlady(460, 167, 100, 85, cButton);
-        JButton przyciskDalej = createButton(240, 590, 253, 53, "");
+
+        JButton przyciskDalej = createButton(234, 591, 333, 53, "");
         background.add(przyciskDalej);
-        placeBlady(235, 588, 340, 60, dalejButton);
+        przyciskDalej.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                System.out.println("tutaj kiedyś będzie płatność");
+            }
+        });
+        placeBlady(227, 588, 350, 65, dalejButton);
         background.add(dalejButton);
 
         JButton menuKliknieteButton = createButton(321, 676, 162, 39, "");

@@ -3,7 +3,10 @@ import Utils.Utils;
 
 import javax.swing.*;
 public class UserProfileWindow extends JFrame {
-    UserProfileWindow(SendPackWindow SendPack,FollowPackWindow follow, MenuWindow menu){
+
+
+
+    UserProfileWindow(SendPackWindow SendPack,FollowPackWindow follow, MenuWindow menu, PackHistory paczka){
         Utils util=new Utils();
 
         setTitle("Profil użytkownika");
@@ -65,7 +68,14 @@ public class UserProfileWindow extends JFrame {
         JButton przycisk = SendPackWindow.createButton(255,580,325,45,"");
         background.add(przycisk);
         SendPackWindow.placeBlady(251,578,345,50, historiaButton);
+        przycisk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                setVisible(false);
+                paczka.setVisible(true);
+            }
+        });
         background.add(historiaButton);
+
 
         JButton przycisk2 = SendPackWindow.createButton(355,710,130,37,"");
         background.add(przycisk2);

@@ -16,7 +16,9 @@ return x;
 
         SendPackWindow SendPack = new SendPackWindow(this);
         FollowPackWindow follow = new FollowPackWindow(this);
-        UserProfileWindow UserProfile = new UserProfileWindow(SendPack, follow, this);
+        PackHistory paczka = new PackHistory(this);
+        UserProfileWindow UserProfile = new UserProfileWindow(SendPack, follow, this, paczka);
+
 
 loginNamee=loginName;
 
@@ -165,6 +167,8 @@ loginNamee=loginName;
         });
         packsButton.addActionListener(e -> {
             System.out.println("Kliknieto paczki");
+            paczka.setVisible(true);
+            setVisible(false);
         });
         packsButton.setBorder(null);
         packsButton.setOpaque(false);
