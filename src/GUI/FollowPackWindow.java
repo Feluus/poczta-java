@@ -13,7 +13,7 @@ public class FollowPackWindow extends JFrame{
         setTitle("Śledzenie paczki");
         setSize(800,820);
         setLayout(null);
-       // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(false);
 

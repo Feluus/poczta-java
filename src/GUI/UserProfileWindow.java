@@ -12,6 +12,7 @@ public class UserProfileWindow extends JFrame {
         setTitle("Profil użytkownika");
         setSize(800, 820);
         setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(false);
 
