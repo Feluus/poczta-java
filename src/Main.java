@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     //stałe
     static Scanner sc = new Scanner(System.in);
-    static UserService uS= new UserService();
+
     //Funkcje
 
 
@@ -13,9 +13,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-//LoginWindow okno = new LoginWindow();
-//okno.setVisible(true);
+        UserService uS= new UserService();
+        uS.loadUsersFromFile();
+LoginWindow okno = new LoginWindow();
+okno.setVisible(true);
 //menuWindow menu = new MenuWindow();
 //menu.setVisible(true);
 //FollowPackWindow follow = new FollowPackWindow();
@@ -24,8 +25,8 @@ public class Main {
         //PackHistory paczka =new PackHistory(MenuWindow menu);
         //paczka.setVisible(true);
 
-        AdminWindow admin = new AdminWindow();
-        admin.setVisible(true);
+        //AdminWindow admin = new AdminWindow();
+      //  admin.setVisible(true);
 
 
     }}

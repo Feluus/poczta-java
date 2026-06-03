@@ -4,17 +4,71 @@ import GUI.LoginWindow;
 import GUI.MenuWindow;
 import model.User;
 
+
 import javax.swing.*;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class UserService {
+
     ArrayList<User> users = new ArrayList<>();
     User user = new User("admin", "admin", 1);
+
     int nextID = 2;
+
     Scanner sc = new Scanner(System.in);
 
+public void saveUsersToFile()
+{
+    try (PrintWriter writer = new PrintWriter("src/resources/users.txt")) {
 
+        for(User user : users) {
+
+            writer.println(
+                    user.login + ";" +
+                            user.haslo + ";" +
+                            user.id
+            );
+
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+}
+
+public void loadUsersFromFile()
+{
+    try (Scanner fileScanner = new Scanner(new File("src/resources/users.txt"))) {
+
+        while(fileScanner.hasNextLine()) {
+
+            String line = fileScanner.nextLine();
+
+            String[] data = line.split(";");
+
+            String login = data[0];
+            String haslo = data[1];
+            int id = Integer.parseInt(data[2]);
+
+            users.add(
+                    new User(login, haslo, id)
+            );
+
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+}
 
    public void register(String loginn, String hasloo) {
         String login = loginn;
@@ -29,6 +83,7 @@ public class UserService {
        {
            User user = new User(login, haslo, nextID++);
            users.add(user);
+           saveUsersToFile();
            System.out.println("Zarejestrowano użytkownika z ID: " + user.id);
            JOptionPane.showMessageDialog(null,"Zarejestrowano użytkownika o loginie: "+ user.login,"",JOptionPane.INFORMATION_MESSAGE );
        }
@@ -166,5 +221,9 @@ public class UserService {
         return zalogowano;
 
 
+
     }
+
+
+
 }
