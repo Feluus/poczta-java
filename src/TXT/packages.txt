@@ -11,3 +11,5 @@
 123;asd;asda;asdas;444444444;111112312;B;PP383943;czeka na wrzucenie do naszego paczkomatu
 123;1231;123;1231;444444444;123123123;B;PP142839;czeka na wrzucenie do naszego paczkomatu
 admin;asd;asd;asd;123123123;123123123;B;PP96437;czeka na wrzucenie do naszego paczkomatu
+testUser;Adam Nowak;Warszawa;Test 2;111111111;999999999;A;PP999999;W drodze
+testUser;Jan Kowalski;Kielce;Testowa 1;111111111;222222222;B;PP123456;Nowa

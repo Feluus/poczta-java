@@ -1,7 +1,8 @@
-package Testy;
+package test;
 
 import org.junit.jupiter.api.Test;
 import service.UserService;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
