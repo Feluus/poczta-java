@@ -2,3 +2,7 @@ Adam;Zwoźny;asd;123123
 denis;zakd;Administrator;20000
 Jan;Kowalski;Kurier;5000
 Adam;Nowak;Kierownik;7000
+Jan;Kowalski;Kurier;5000
+Adam;Nowak;Listonosz;4000
+Jan;Kowalski;Kurier;5000
+Adam;Nowak;Listonosz;4000
