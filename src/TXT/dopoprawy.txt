@@ -1,0 +1,56 @@
+dziś do zrobienia:
+
+-można kliknąć zapisz tylko gdy będą wypełnione wszytkie dane i numer telefonu będzie miał 9 cyfr
+-wtedy zapis do pliku i flaga dla zapłać zmienia się na tak
+-jeden gabaryt jednocześnie
+
+
+jutro:
+-na wzór dodania użytkownika zrobić: dodanie paczki, dodanie pracownika,
+
+
+nadanie paczki:
+//-jeden gabaryt jednocześnie
+-zapłać (pole płatności pomijamy), płatność zawsze przechodzi
+-zapłać jeśli wszystkie pola są wypełnione + wypełnione wszystkie dane w userprofile
+-jeśli płatność się powiedzie komunikat,,płatność się powiodła ,,zapisz (losowy) kod na paczce,, i zostaw w jednym z naszych punktów
+-po dodaniu paczki w historia paczek pojawia się wpis ,, numer paczki, odbiorca, adres odbiorcy, numer telefonu, data nadania (pobrana z windowsa)
+
+
+śledzenie paczki:
+-po kliknięciu ,,śledź,, wyświetla się komunikat że paczka czeka na nadanie
+
+profil użytkownika:
+-można kliknąć zapisz tylko gdy będą wypełnione wszytkie dane i numer telefonu będzie miał 9 cyfr
+-wtedy zapis do pliku i flaga dla zapłać zmienia się na tak
+
+
+-historia paczek
+pomyśleć co jak za dużo paczek
+
+Admin panel
+-login admin haslo admin by sie zalogować, pierwsza pozycja w pliku txt
+-będzie taki kwadracik po lewo na białym tle słuzacy do zwolnienia
+-po prawo przycisk aktualizuj -> zapisuje dane o pracowniku
+-dodaj doda pracownika na spód
+-wymysleć cos dla wyloguj
+-kliknięcie ,,dodaj,, tworzy 4 pola do wpisania
+-kliknięcie zwolnij kasuje te 4 pola i użytkownika z listy
+
+!!!żeby to działało nawet po wylogowaniu
+
+
+Zrobione:
+logowanie
+-admin admin to dane do logowania
+-tworzenie konta z plikiem tekstowym dziala i tak samo logowanie
+-zapisanie danych użytkownika do pliku, TAK ŻEBY zadziałało po ponownym zalogowaniu
+userprofile
+//-wywalić avatar, zamiast tego dać przycisk zapisz
+usunąć w paint ,,brak paczek,,
+usunac reklamacja
+przesunac w dol bialy kwadrat
+
+adminpanel
+-imie przesunac w prawo
+-pensja w lewo

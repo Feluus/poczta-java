@@ -1,10 +1,14 @@
 package GUI;
 import Utils.Utils;
+import model.PackageData;
+import service.PackageService;
 
 import javax.swing.*;
 public class FollowPackWindow extends JFrame{
+    PackageService packageService = new PackageService();
 
     public static JTextField codeField = new JTextField("Wpisz numer paczki");
+    public static JTextField phonecodeField = new JTextField("Wpisz numer telefonu");
 
     public boolean isFirstClick=true;
     Utils util = new Utils();
@@ -46,7 +50,7 @@ public class FollowPackWindow extends JFrame{
         codeField.setVisible(true);
         background.add(codeField);
         codeField.setFocusable(false);
-        util.maxTextLenghtPhone(codeField, 9);
+        util.maxTextLenght(codeField, 8);
         codeField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 codeField.setFocusable(true);
@@ -80,20 +84,80 @@ public class FollowPackWindow extends JFrame{
 
         });
 
+
+        //pole telefonu
+
+        phonecodeField.setBounds(313, 328, 270, 20);
+        phonecodeField.setBorder(null);
+        phonecodeField.setOpaque(false);
+        phonecodeField.setVisible(true);
+        background.add( phonecodeField);
+        phonecodeField.setFocusable(false);
+        util.maxTextLenghtPhone( phonecodeField, 9);
+        phonecodeField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                phonecodeField.setFocusable(true);
+                phonecodeField.requestFocusInWindow();
+            }
+        });
+
+        phonecodeField.addFocusListener(new java.awt.event.FocusAdapter() {
+
+
+            public void focusGained(java.awt.event.FocusEvent e) {
+
+
+                if( phonecodeField.getText().equals("Wpisz numer telefonu")) {
+
+                    phonecodeField.setText("");
+
+
+                }
+
+            }
+
+            public void focusLost(java.awt.event.FocusEvent e) {
+
+                if( phonecodeField.getText().isEmpty()) {
+                    phonecodeField.setText("Wpisz numer telefonu");
+                }
+
+            }
+
+
+        });
+
         add(background);
 
 //sledz przycisk
         JButton followButton = new JButton();
-        followButton.setBounds(264, 304, 345, 60);
-        followButton2.setBounds(255, 300, 361, 70);
+        followButton.setBounds(264, 394, 345, 60);
+        followButton2.setBounds(255, 390, 361, 70);
         followButton.addActionListener(e -> {
-            System.out.println("Kliknieto sledz");
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Nie ma takiej paczki w bazie",
-                    "Błąd wyszukiwania",
-                    JOptionPane.ERROR_MESSAGE
-            );
+
+            packageService.loadPackagesFromFile();
+            String code = codeField.getText();
+            String phone = phonecodeField.getText();
+            PackageData p = packageService.findPackage(code, phone);
+
+            if(p != null)
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Status paczki:\n\n" + p.status,
+                        "Śledzenie przesyłki",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Nie ma takiej paczki w bazie",
+                        "Błąd wyszukiwania",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
         followButton.setBorder(null);
         followButton.setOpaque(false);
@@ -116,9 +180,9 @@ public class FollowPackWindow extends JFrame{
 
 
 
-        JButton menuKliknieteButton = SendPackWindow.createButton(364, 390, 147, 39, "");
+        JButton menuKliknieteButton = SendPackWindow.createButton(362, 485, 147, 39, "");
         background.add(menuKliknieteButton);
-        SendPackWindow.placeBlady(338, 380, 200, 73, menuKlikniete);
+        SendPackWindow.placeBlady(338, 470, 200, 73, menuKlikniete);
         SendPackWindow.mouseListenerIMG(menuKliknieteButton, menuKlikniete);
         menuKliknieteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {

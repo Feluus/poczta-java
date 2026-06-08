@@ -1,6 +1,8 @@
 package GUI;
 
 import Utils.Utils;
+import model.PackageData;
+import service.PackageService;
 
 import javax.swing.*;
 import java.awt.Image;
@@ -9,27 +11,31 @@ public class SendPackWindow extends JFrame {
    public static boolean isClicked =false;
     Utils util = new Utils();
 
+    PackageService packageService;
+
+    public static JLabel selectedLabel = null;
+    public static String selectedSize = "";
+
     public static JTextField przyciskPoz = createTextField(278, 329, 234, 15, "Imię i Nazwisko");
     public static JTextField przyciskPoz2 = createTextField(278, 388, 234, 15, "Miejscowość");
     public static JTextField przyciskPoz3 = createTextField(278, 444, 234, 15, "Ulica, numer budynku/mieszkania");
     public static JTextField przyciskPoz4 = createTextField(278, 504, 234, 15, "Numer telefonu");
 
 
-    public static void clickListener(JButton buttonTitle, JLabel buttonTitle2) {
-        final int[] tempo = {1};
+    public static void clickListener(JButton buttonTitle, JLabel buttonTitle2,String size) {
+
 
         buttonTitle.addActionListener(e -> {
-     tempo[0]++;
 
-     if(tempo[0] %2==0){
-         isClicked=true;
-         buttonTitle2.setVisible(true);
-     }
-     else{
-         buttonTitle2.setVisible(false);
-     }
+            if(selectedLabel != null) {
+                selectedLabel.setVisible(false);
+            }
+
+            buttonTitle2.setVisible(true);
+            selectedLabel = buttonTitle2;
+           selectedSize = size;
+
         });
-
 
 
     }
@@ -124,17 +130,21 @@ public class SendPackWindow extends JFrame {
         przyciskPoz2.setText( "Miejscowość");
         przyciskPoz3.setText( "Ulica, numer budynku/mieszkania");
         przyciskPoz4.setText( "Numer telefonu");
+        selectedSize = "";
+        selectedLabel = null;
     }
 
 
 
-    public SendPackWindow(MenuWindow menu) {
+    public SendPackWindow(MenuWindow menu, UserProfileWindow profile, String loginUser) {
         setTitle("nadanie paczki");
         setSize(800, 820);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(false);
+
+        packageService = new PackageService();
 
         ImageIcon tlo = new ImageIcon(getClass().getResource("/resources/nadajv2.jpg"));
         ImageIcon dalej = new ImageIcon(getClass().getResource("/resources/dalej.jpg"));
@@ -179,6 +189,86 @@ public class SendPackWindow extends JFrame {
 
         JButton przyciskDalej = createButton(234, 591, 333, 53, "");
         background.add(przyciskDalej);
+
+
+           przyciskDalej.addActionListener(e -> {
+
+               if(przyciskPoz.getText().equals("Imię i Nazwisko")
+                       || przyciskPoz2.getText().equals("Miejscowość")
+                       || przyciskPoz3.getText().equals("Ulica, numer budynku/mieszkania")
+                       || przyciskPoz4.getText().equals("Numer telefonu"))
+               {
+                   JOptionPane.showMessageDialog(
+                           null,
+                           "Uzupełnij wszystkie pola"
+                   );
+                   return;
+               }
+               if(przyciskPoz4.getText().length() != 9)
+               {
+                   JOptionPane.showMessageDialog(
+                           null,
+                           "Numer telefonu musi mieć 9 cyfr"
+                   );
+                   return;
+               }
+
+               if(selectedSize.equals(""))
+               {
+                   JOptionPane.showMessageDialog(
+                           null,
+                           "Wybierz gabaryt przesyłki"
+                   );
+                   return;
+               }
+
+               if(profile.przyciskPoz.getText().equals("Jan")
+                       || profile.przyciskPoz2.getText().equals("Kowalski")
+                       || profile.przyciskPoz3.getText().equals("ul. Bęczkowska 12, Kielce")
+                       || profile.przyciskPoz4.getText().equals("Numer telefonu"))
+               {
+                   JOptionPane.showMessageDialog(
+                           null,
+                           "Uzupełnij dane użytkownika"
+                   );
+                   return;
+               }
+
+               String kodPaczki =
+                       "PP" + (int)(Math.random() * 1000000);
+               PackageData pack =
+                       new PackageData(                 loginUser,
+                               przyciskPoz.getText(),
+                               przyciskPoz2.getText(),
+                               przyciskPoz3.getText(),
+                               profile.przyciskPoz4.getText(),
+                               przyciskPoz4.getText(),
+                               selectedSize,
+                               kodPaczki,
+                               "czeka na wrzucenie do naszego paczkomatu"
+                       );
+               packageService.addPackage(pack);
+
+               JOptionPane.showMessageDialog(
+                       null,
+                       "Płatność się powiodła.\n\nZapisz kod: " + kodPaczki +
+                               "\nna paczce i zostaw paczkę w jednym z naszych punktów.",
+                       "Płatność",
+                       JOptionPane.INFORMATION_MESSAGE
+               );
+               setDefaultText();
+               if(selectedLabel != null)
+               {
+                   selectedLabel.setVisible(false);
+               }
+
+               selectedLabel = null;
+               selectedSize = "";
+            });
+
+
+
+
         przyciskDalej.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 System.out.println("tutaj kiedyś będzie płatność");
@@ -186,6 +276,10 @@ public class SendPackWindow extends JFrame {
         });
         placeBlady(227, 588, 350, 65, dalejButton);
         background.add(dalejButton);
+
+
+
+
 
         JButton menuKliknieteButton = createButton(321, 676, 162, 39, "");
         background.add(menuKliknieteButton);
@@ -218,9 +312,9 @@ public class SendPackWindow extends JFrame {
        // mouseListenerIMG(przyciskGab2, bButton);
         //mouseListenerIMG(przyciskGab3, cButton);
 
-        clickListener(przyciskGab, aButton);
-        clickListener(przyciskGab2, bButton);
-        clickListener(przyciskGab3, cButton);
+        clickListener(przyciskGab, aButton,"A");
+        clickListener(przyciskGab2, bButton,"B");
+        clickListener(przyciskGab3, cButton,"C");
 
         util.maxTextLenght(przyciskPoz,30);
         util.maxTextLenght(przyciskPoz2,20);

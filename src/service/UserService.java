@@ -1,5 +1,6 @@
 package service;
 
+import GUI.AdminWindow;
 import GUI.LoginWindow;
 import GUI.MenuWindow;
 import model.User;
@@ -15,15 +16,17 @@ import java.util.Scanner;
 public class UserService {
 
     ArrayList<User> users = new ArrayList<>();
-    User user = new User("admin", "admin", 1);
+  //  User user = new User("admin", "admin", 1);
 
     int nextID = 2;
+
 
     Scanner sc = new Scanner(System.in);
 
 public void saveUsersToFile()
 {
-    try (PrintWriter writer = new PrintWriter("src/resources/users.txt")) {
+
+    try (PrintWriter writer = new PrintWriter("src/TXT/users.txt")) {
 
         for(User user : users) {
 
@@ -45,7 +48,8 @@ public void saveUsersToFile()
 
 public void loadUsersFromFile()
 {
-    try (Scanner fileScanner = new Scanner(new File("src/resources/users.txt"))) {
+    users.clear();
+    try (Scanner fileScanner = new Scanner(new File("src/TXT/users.txt"))) {
 
         while(fileScanner.hasNextLine()) {
 
@@ -60,6 +64,10 @@ public void loadUsersFromFile()
             users.add(
                     new User(login, haslo, id)
             );
+            if(id >= nextID)
+            {
+                nextID = id + 1;
+            }
 
         }
 
@@ -68,6 +76,7 @@ public void loadUsersFromFile()
         e.printStackTrace();
 
     }
+    System.out.println("Wczytano użytkowników: " + users.size());
 }
 
    public void register(String loginn, String hasloo) {
@@ -112,84 +121,40 @@ public void loadUsersFromFile()
     public boolean logging(String loginn, String hasloo) {
         String login = loginn;
         String haslo = hasloo;
-        int countdown = 4;
-        int countdownLogin=3;
-        int whichACC=0;
-        boolean goodLogin = false;
-        boolean goodPassword=false;
+
+        boolean znaleziono = false;
         boolean zalogowano=false;
 
 
-       /* do {
-            countdown--;
 
-            if (goodPassword == true)
-            {
-                break;
-            }
-
-            //login = sc.next();
-            for (int i = 0; i < users.size(); i++) {
-
-                if(users.get(i).equals(null)){
-                    JOptionPane.showMessageDialog(null,"nie ma takiego użytkownikaaa","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
-
-                }
-                else if (users.get(i).login.equals(login)) {
-                    goodLogin = true;
-
-                    do {
-                        whichACC=i;
-                        countdownLogin--;
-
-
-                        if(user.sprawdzHaslo(users.get(i).haslo, haslo)==true)
-                        {
-                            System.out.println("hasło poprawne");
-                            goodPassword=true;
-
-                        }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(null,"wpisano złe hasło","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
-                            System.out.println("zle haslo mordeczko");
-
-                        }
-                    } while(goodPassword==false);
-
-
-
-
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"nie ma takiego loginu w bazie","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
-                }
-            }
-
-
-        }while (goodLogin) ;
-
-        */
 
             for (int i = 0; i < users.size(); i++) {
 
-                if(users.get(i).login.equals(null)){
-                    JOptionPane.showMessageDialog(null,"nie ma takiego użytkownikaaa","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+                if (login.equals("admin")){
+                    znaleziono = true;
+                    if(haslo.equals("admin")){
+
+
+                        AdminWindow admin = new AdminWindow();
+                        admin.setVisible(true);
+                        zalogowano=true;
+                        break;
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"wpisano złe hasło","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+                        System.out.println("zle haslo admina");
+                        return false;
+                    }
 
                 }
-                else if (users.get(i).login.equals(login)) {
-                    goodLogin = true;
 
+               if (users.get(i).login.equals(login)) {
+                    znaleziono = true;
 
-                        whichACC=i;
-                        countdownLogin--;
-
-
-                        if(user.sprawdzHaslo(users.get(i).haslo, haslo)==true)
+                        if(users.get(i).haslo.equals(haslo))
                         {
                             System.out.println("hasło poprawne");
-                            goodPassword=true;
                             zalogowano=true;
 
                         }
@@ -197,21 +162,23 @@ public void loadUsersFromFile()
                         {
                             JOptionPane.showMessageDialog(null,"wpisano złe hasło","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
                             System.out.println("zle haslo");
-                            zalogowano=false;
 
                         }
 
 
-
+                    break;
 
 
                 }
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"nie ma takiego loginu w bazie","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
-                    zalogowano=false;
-                }
+
             }
+
+        if(!znaleziono)
+        {
+            JOptionPane.showMessageDialog(null,"nie ma takiego loginu w bazie","Błąd rejestracji",JOptionPane.ERROR_MESSAGE );
+            zalogowano=false;
+        }
+
 
 
 
@@ -223,6 +190,11 @@ public void loadUsersFromFile()
 
 
     }
+
+   public UserService(){
+
+    loadUsersFromFile();
+   }
 
 
 

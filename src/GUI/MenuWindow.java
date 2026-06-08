@@ -13,14 +13,17 @@ x = x -2*loginNamee.length();
 return x;
     }
     public MenuWindow(String loginName){
+        loginNamee=loginName;
 
-        SendPackWindow SendPack = new SendPackWindow(this);
         FollowPackWindow follow = new FollowPackWindow(this);
-        PackHistory paczka = new PackHistory(this);
-        UserProfileWindow UserProfile = new UserProfileWindow(SendPack, follow, this, paczka);
+        UserProfileWindow UserProfile = new UserProfileWindow(null, follow, this,loginNamee);
+        SendPackWindow SendPack = new SendPackWindow(this, UserProfile, loginNamee);
+        UserProfile.setSendPackWindow(SendPack);
 
 
-loginNamee=loginName;
+
+
+
 
     setTitle("PocztaPolska");
     setSize(800,820);
@@ -167,6 +170,10 @@ loginNamee=loginName;
         });
         packsButton.addActionListener(e -> {
             System.out.println("Kliknieto paczki");
+
+            PackHistory paczka =
+                    new PackHistory(this, loginNamee);
+
             paczka.setVisible(true);
             setVisible(false);
         });

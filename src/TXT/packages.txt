@@ -1,0 +1,12 @@
+123;FIlip;Kielce;Ul. Zagnańska 155;321321321;123123123;B;PP945545;czeka na wrzucenie do naszego paczkomatu
+123;432;432;432;432432432;123123123;A;PP304468;czeka na wrzucenie do naszego paczkomatu
+123;filip;filip;filip;321321321;123123123;B;PP800697;czeka na wrzucenie do naszego paczkomatu
+1234;kud;asd;asd;543543543;432432432;C;PP583034;czeka na wrzucenie do naszego paczkomatu
+1234;asdasd;asdasd;asdasda;123123123;432432432;B;PP151796;czeka na wrzucenie do naszego paczkomatu
+123;3;333;3333;444444444;333333333;A;PP321611;czeka na wrzucenie do naszego paczkomatu
+123;FilipKOX;123;123;444444444;112312312;B;PP215845;czeka na wrzucenie do naszego paczkomatu
+123;123;123;123;444444444;123123123;B;PP809228;czeka na wrzucenie do naszego paczkomatu
+123;dsa;dsa;dsa;444444444;111111111;B;PP692857;czeka na wrzucenie do naszego paczkomatu
+123;asdasdTERAAZ;asdasd;asdasdasd;444444444;321321312;C;PP168253;czeka na wrzucenie do naszego paczkomatu
+123;asd;asda;asdas;444444444;111112312;B;PP383943;czeka na wrzucenie do naszego paczkomatu
+123;1231;123;1231;444444444;123123123;B;PP142839;czeka na wrzucenie do naszego paczkomatu

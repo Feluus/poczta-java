@@ -1,12 +1,26 @@
 package GUI;
 import Utils.Utils;
+import model.UserProfile;
+import service.UserProfileService;
 
 import javax.swing.*;
 public class UserProfileWindow extends JFrame {
+    private SendPackWindow sendPack;
+    private FollowPackWindow follow;
+    private MenuWindow menu;
 
+    public static JTextField przyciskPoz = SendPackWindow.createTextField(290,227,234,15,"Jan");
+    public static JTextField przyciskPoz2 = SendPackWindow.createTextField(290,321,234,15,"Kowalski");
+    public static JTextField przyciskPoz3 = SendPackWindow.createTextField(290,414,234,15,"ul. Bęczkowska 12, Kielce");
+    public static JTextField przyciskPoz4 = SendPackWindow.createTextField(290,507,234,15,"Numer telefonu");
 
+    public void setSendPackWindow(SendPackWindow sendPack)
+    {
+        this.sendPack =sendPack;
+    }
 
-    UserProfileWindow(SendPackWindow SendPack,FollowPackWindow follow, MenuWindow menu, PackHistory paczka){
+    UserProfileWindow(SendPackWindow SendPack,FollowPackWindow follow, MenuWindow menu,String loginUser){
+        UserProfileService profileService = new UserProfileService();
         Utils util=new Utils();
 
         setTitle("Profil użytkownika");
@@ -18,16 +32,16 @@ public class UserProfileWindow extends JFrame {
 
 
         ImageIcon tlo = new ImageIcon(getClass().getResource("/resources/profiluzytkownika.jpg"));
-        ImageIcon historia = new ImageIcon(getClass().getResource("/resources/historia.jpg"));
+        ImageIcon zapisz = new ImageIcon(getClass().getResource("/resources/historia.jpg"));
         ImageIcon wyloguj = new ImageIcon(getClass().getResource("/resources/wyloguj.jpg"));
-        ImageIcon avatarCzerw = new ImageIcon(getClass().getResource("/resources/avatarCzerw.jpg"));
+        //ImageIcon avatarCzerw = new ImageIcon(getClass().getResource("/resources/avatarCzerw.jpg"));
         ImageIcon d = new ImageIcon(getClass().getResource("/resources/menukliknietev2.jpg"));
 
 
         JLabel background = new JLabel(tlo);
-        JLabel historiaButton = new JLabel(historia);
+        JLabel zapiszButton = new JLabel(zapisz);
         JLabel wylogujButton= new JLabel(wyloguj);
-        JLabel avatarCzerwButton = new JLabel(avatarCzerw);
+       // JLabel avatarCzerwButton = new JLabel(avatarCzerw);
         JLabel menuKlikniete = new JLabel(d);
 
 
@@ -42,17 +56,24 @@ public class UserProfileWindow extends JFrame {
                 System.out.println("X: " + e.getX() + " Y: " + e.getY());
             }
         });
-        JButton avatar= SendPackWindow.createButton(385,59,67,89,"");
-        background.add(avatar);
+       // JButton avatar= SendPackWindow.createButton(385,59,67,89,"");
+        //background.add(avatar);
 
-        JTextField przyciskPoz = SendPackWindow.createTextField(290,227,234,15,"Jan");
+
         background.add(przyciskPoz);
-        JTextField przyciskPoz2 = SendPackWindow.createTextField(290,321,234,15,"Kowalski");
         background.add(przyciskPoz2);
-        JTextField przyciskPoz3 = SendPackWindow.createTextField(290,414,234,15,"ul. Bęczkowska 12, Kielce");
         background.add(przyciskPoz3);
-        JTextField przyciskPoz4 = SendPackWindow.createTextField(290,507,234,15,"Numer telefonu");
         background.add(przyciskPoz4);
+        UserProfile profile =
+                profileService.getProfile(loginUser);
+
+        if(profile != null) {
+
+            przyciskPoz.setText(profile.firstName);
+            przyciskPoz2.setText(profile.lastName);
+            przyciskPoz3.setText(profile.address);
+            przyciskPoz4.setText(profile.phone);
+        }
 
         SendPackWindow.textListener(przyciskPoz, "Jan");
         SendPackWindow.textListener(przyciskPoz2, "Kowalski");
@@ -66,16 +87,30 @@ public class UserProfileWindow extends JFrame {
 
 
 
-        JButton przycisk = SendPackWindow.createButton(255,580,325,45,"");
+        JButton przycisk = SendPackWindow.createButton(252,580,335,45,"");
         background.add(przycisk);
-        SendPackWindow.placeBlady(251,578,345,50, historiaButton);
+        SendPackWindow.placeBlady(249,573,350,55, zapiszButton);
         przycisk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                setVisible(false);
-                paczka.setVisible(true);
+
+                UserProfile profile =
+                        new UserProfile(
+                                loginUser,
+                                przyciskPoz.getText(),
+                                przyciskPoz2.getText(),
+                                przyciskPoz3.getText(),
+                                przyciskPoz4.getText()
+                        );
+
+                profileService.saveProfile(profile);
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Zapisano zmiany"
+                );
             }
         });
-        background.add(historiaButton);
+        background.add(zapiszButton);
 
 
         JButton przycisk2 = SendPackWindow.createButton(355,710,130,37,"");
@@ -90,6 +125,7 @@ public class UserProfileWindow extends JFrame {
                 przyciskPoz4.setText( "Numer telefonu");
                 SendPack.setDefaultText();
                 follow.codeField.setText("Wpisz numer paczki");
+                follow.phonecodeField.setText("Wpisz numer telefonu");
                 menu.setVisible(false);
                 LoginWindow oknoLogin2 = new LoginWindow();
                 oknoLogin2.setVisible(true);
@@ -100,13 +136,12 @@ public class UserProfileWindow extends JFrame {
 
         JButton przycisk3 = SendPackWindow.createButton(420,105,40,40,"");
         background.add(przycisk3);
-        SendPackWindow.placeBlady(432,118,32,32, avatarCzerwButton);
-        background.add(avatarCzerwButton);
 
 
-        SendPackWindow.mouseListenerIMG(przycisk, historiaButton);
+
+        SendPackWindow.mouseListenerIMG(przycisk, zapiszButton);
         SendPackWindow.mouseListenerIMG(przycisk2, wylogujButton);
-        SendPackWindow.mouseListenerIMG(przycisk3, avatarCzerwButton);
+
 
         JButton menuKliknieteButton = SendPackWindow.createButton(355, 649, 128, 39, "");
         background.add(menuKliknieteButton);

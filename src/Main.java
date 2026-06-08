@@ -13,8 +13,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        UserService uS= new UserService();
-        uS.loadUsersFromFile();
 LoginWindow okno = new LoginWindow();
 okno.setVisible(true);
 //menuWindow menu = new MenuWindow();
@@ -25,8 +23,7 @@ okno.setVisible(true);
         //PackHistory paczka =new PackHistory(MenuWindow menu);
         //paczka.setVisible(true);
 
-        //AdminWindow admin = new AdminWindow();
-      //  admin.setVisible(true);
+
 
 
     }}

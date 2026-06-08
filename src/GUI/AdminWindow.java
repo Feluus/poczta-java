@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class AdminWindow extends JFrame {
 
-    public AdminWindow(LoginWindow login){
+    public AdminWindow(){
         setTitle("Panel Admina");
         setSize(800,820);
         setLayout(null);
@@ -72,7 +72,7 @@ public class AdminWindow extends JFrame {
             public void mouseClicked(java.awt.event.MouseEvent e) {
 
             setVisible(false);
-            login.setVisible(true);
+            //login.setVisible(true);
             }
         });
         background.add(wylogujButton);
