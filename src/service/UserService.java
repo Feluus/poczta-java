@@ -103,7 +103,7 @@ public void loadUsersFromFile()
 
     }
 
-    boolean loginExist(String login) {
+    public boolean loginExist(String login) {
 
 
         for (int i = 0; i < users.size(); i++) {

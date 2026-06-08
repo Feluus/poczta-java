@@ -1,24 +1,6 @@
-dziś do zrobienia:
-
--można kliknąć zapisz tylko gdy będą wypełnione wszytkie dane i numer telefonu będzie miał 9 cyfr
--wtedy zapis do pliku i flaga dla zapłać zmienia się na tak
--jeden gabaryt jednocześnie
 
 
-jutro:
--na wzór dodania użytkownika zrobić: dodanie paczki, dodanie pracownika,
 
-
-nadanie paczki:
-//-jeden gabaryt jednocześnie
--zapłać (pole płatności pomijamy), płatność zawsze przechodzi
--zapłać jeśli wszystkie pola są wypełnione + wypełnione wszystkie dane w userprofile
--jeśli płatność się powiedzie komunikat,,płatność się powiodła ,,zapisz (losowy) kod na paczce,, i zostaw w jednym z naszych punktów
--po dodaniu paczki w historia paczek pojawia się wpis ,, numer paczki, odbiorca, adres odbiorcy, numer telefonu, data nadania (pobrana z windowsa)
-
-
-śledzenie paczki:
--po kliknięciu ,,śledź,, wyświetla się komunikat że paczka czeka na nadanie
 
 profil użytkownika:
 -można kliknąć zapisz tylko gdy będą wypełnione wszytkie dane i numer telefonu będzie miał 9 cyfr

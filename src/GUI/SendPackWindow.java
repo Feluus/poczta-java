@@ -245,7 +245,7 @@ public class SendPackWindow extends JFrame {
                                przyciskPoz4.getText(),
                                selectedSize,
                                kodPaczki,
-                               "czeka na wrzucenie do naszego paczkomatu"
+                               "Paczka czeka na nadanie"
                        );
                packageService.addPackage(pack);
 

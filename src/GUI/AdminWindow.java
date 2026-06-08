@@ -1,13 +1,28 @@
 package GUI;
 
+import Utils.Utils;
+import model.Employee;
+import service.EmployeeService;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class AdminWindow extends JFrame {
+    Utils util = new Utils();
 
-    public AdminWindow(){
+
+
+    private EmployeeService employeeService =
+            new EmployeeService();
+
+    private JTable employeeTable;
+    private DefaultTableModel tableModel;
+
+    public AdminWindow() {
+
         setTitle("Panel Admina");
-        setSize(800,820);
+        setSize(800, 820);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -18,79 +33,273 @@ public class AdminWindow extends JFrame {
         );
 
         Image img = tlo.getImage().getScaledInstance(
-                getWidth(),
-                getHeight(),
-                java.awt.Image.SCALE_SMOOTH
+                800,
+                820,
+                Image.SCALE_SMOOTH
         );
 
-        ImageIcon scaledTlo = new ImageIcon(img);
-        ImageIcon wyloguj = new ImageIcon(getClass().getResource("/resources/wylogujniebieski.jpg"));
-        ImageIcon dodaj = new ImageIcon(getClass().getResource("/resources/dodajblady.jpg"));
-        ImageIcon usun = new ImageIcon(getClass().getResource("/resources/usunblady.jpg"));
+        JLabel background =
+                new JLabel(new ImageIcon(img));
 
-
-
-        JLabel background = new JLabel(scaledTlo);
-        JLabel wylogujButton= new JLabel(wyloguj);
-        JLabel dodajButton = new JLabel(dodaj);
-        JLabel usunButton = new JLabel(usun);
-
-        background.setBounds(-30,0,848,820);
+        background.setBounds(0, 0, 800, 820);
         background.setLayout(null);
-        background.setVisible(true);
+
         add(background);
 
-        background.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                System.out.println("X: " + e.getX() + " Y: " + e.getY());
+        // =========================
+        // TABELA PRACOWNIKÓW
+        // =========================
+
+        tableModel = new DefaultTableModel(
+                new String[]{
+                        "Imię",
+                        "Nazwisko",
+                        "Stanowisko",
+                        "Pensja"
+                },
+                0
+        );
+
+        employeeTable = new JTable(tableModel){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
-        });
+        };
 
+        JScrollPane scroll =
+                new JScrollPane(employeeTable);
 
+        scroll.setBounds(70, 120, 660, 250);
 
+        background.add(scroll);
 
+        // =========================
+        // POLA DODAWANIA
+        // =========================
 
-        JButton usunPrzycisk = SendPackWindow.createButton(550,40,120,40,"");
-        SendPackWindow.mouseListenerIMG(usunPrzycisk, usunButton);
-        background.add(usunPrzycisk);
-        SendPackWindow.placeBlady(537,29,140,60,usunButton);
-        usunPrzycisk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                System.out.println("kliknieto usun");
+        JTextField imieField =
+                new JTextField();
 
-            }
-        });
-        background.add(usunButton);
+        JTextField nazwiskoField =
+                new JTextField();
 
+        JTextField pensjaField =
+                new JTextField();
 
+        String[] stanowiska = {
+                "Listonosz",
+                "Kurier",
+                "Pracownik okienka",
+                "Kierownik",
+                "Magazynier"
+        };
 
-        JButton przycisk2 = SendPackWindow.createButton(338,704,168,52,"");
-        SendPackWindow.mouseListenerIMG(przycisk2, wylogujButton);
-        background.add(przycisk2);
-        SendPackWindow.placeBlady(339,704,168,50,wylogujButton);
-        przycisk2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
+        JComboBox<String> stanowiskoBox =
+                new JComboBox<>(stanowiska);
 
-            setVisible(false);
-            //login.setVisible(true);
-            }
-        });
-        background.add(wylogujButton);
+        imieField.setBounds(70, 420, 120, 25);
+        nazwiskoField.setBounds(210, 420, 120, 25);
+        stanowiskoBox.setBounds(350, 420, 150, 25);
+        pensjaField.setBounds(520, 420, 100, 25);
 
+        background.add(imieField);
+        background.add(nazwiskoField);
+        background.add(stanowiskoBox);
+        background.add(pensjaField);
 
+        // =========================
+        // DODAJ
+        // =========================
 
+        JButton dodajPrzycisk =
+                new JButton("Dodaj");
 
+        dodajPrzycisk.setBounds(
+                640,
+                420,
+                100,
+                25
+        );
 
-        JButton dodajPrzycisk = SendPackWindow.createButton(682,40,104,40,"");
-        SendPackWindow.mouseListenerIMG(dodajPrzycisk, dodajButton);
         background.add(dodajPrzycisk);
-        SendPackWindow.placeBlady(680,37,115,52,dodajButton);
-        dodajPrzycisk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
 
+        dodajPrzycisk.addActionListener(e -> {
+
+            if(imieField.getText().isEmpty()
+                    || nazwiskoField.getText().isEmpty()
+                    || pensjaField.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Uzupełnij wszystkie pola"
+                );
+                return;
             }
+
+            Employee employee =
+                    new Employee(
+                            imieField.getText(),
+                            nazwiskoField.getText(),
+                            (String) stanowiskoBox.getSelectedItem(),
+                            pensjaField.getText()
+                    );
+
+            employeeService.addEmployee(employee);
+
+            refreshEmployees();
+
+            imieField.setText("");
+            nazwiskoField.setText("");
+            pensjaField.setText("");
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Dodano pracownika"
+            );
         });
-        background.add(dodajButton);
+
+        // =========================
+        // USUŃ
+        // =========================
+
+        JButton usunPrzycisk =
+                new JButton("Usuń");
+
+        usunPrzycisk.setBounds(
+                640,
+                460,
+                100,
+                25
+        );
+
+        background.add(usunPrzycisk);
+
+        usunPrzycisk.addActionListener(e -> {
+
+            int row = employeeTable.getSelectedRow();
+
+            if(row == -1)
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Zaznacz pracownika"
+                );
+                return;
+            }
+
+            String imie =
+                    tableModel.getValueAt(row,0).toString();
+
+            String nazwisko =
+                    tableModel.getValueAt(row,1).toString();
+
+            employeeService.removeEmployee(
+                    imie,
+                    nazwisko
+            );
+
+            refreshEmployees();
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Usunięto pracownika"
+            );
+        });
+
+        // =========================
+        // EDYTUJ
+        // =========================
+
+        JButton edytujPrzycisk =
+                new JButton("Edytuj");
+
+        edytujPrzycisk.setBounds(
+                640,
+                500,
+                100,
+                25
+        );
+
+        background.add(edytujPrzycisk);
+
+        edytujPrzycisk.addActionListener(e -> {
+
+            int row = employeeTable.getSelectedRow();
+
+            if(row == -1)
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Zaznacz pracownika"
+                );
+                return;
+            }
+
+            String imie =
+                    tableModel.getValueAt(row,0).toString();
+
+            String nazwisko =
+                    tableModel.getValueAt(row,1).toString();
+
+            String noweStanowisko =
+                    JOptionPane.showInputDialog(
+                            "Nowe stanowisko",
+                            tableModel.getValueAt(row,2)
+                    );
+
+            if(noweStanowisko == null)
+                return;
+
+            String nowaPensja =
+                    JOptionPane.showInputDialog(
+                            "Nowa pensja",
+                            tableModel.getValueAt(row,3)
+                    );
+
+            if(nowaPensja == null)
+                return;
+
+            employeeService.editEmployee(
+                    imie,
+                    nazwisko,
+                    noweStanowisko,
+                    nowaPensja
+            );
+
+            refreshEmployees();
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Zaktualizowano dane"
+            );
+        });
+
+
+
+
+        refreshEmployees();
+        util.maxTextLenght(imieField, 30);
+        util.maxTextLenght(nazwiskoField, 30);
+        util.maxTextLenghtPhone(pensjaField, 6);
+    }
+
+    private void refreshEmployees()
+    {
+        tableModel.setRowCount(0);
+
+        for(Employee e : employeeService.getEmployees())
+        {
+            tableModel.addRow(
+                    new Object[]{
+                            e.firstName,
+                            e.lastName,
+                            e.position,
+                            e.salary
+                    }
+            );
+        }
 
     }
+
 }

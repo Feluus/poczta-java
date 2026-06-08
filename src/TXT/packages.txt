@@ -10,3 +10,4 @@
 123;asdasdTERAAZ;asdasd;asdasdasd;444444444;321321312;C;PP168253;czeka na wrzucenie do naszego paczkomatu
 123;asd;asda;asdas;444444444;111112312;B;PP383943;czeka na wrzucenie do naszego paczkomatu
 123;1231;123;1231;444444444;123123123;B;PP142839;czeka na wrzucenie do naszego paczkomatu
+admin;asd;asd;asd;123123123;123123123;B;PP96437;czeka na wrzucenie do naszego paczkomatu

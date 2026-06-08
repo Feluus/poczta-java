@@ -1,0 +1,2 @@
+Adam;Zwoźny;asd;123123
+denis;zakd;Administrator;20000
